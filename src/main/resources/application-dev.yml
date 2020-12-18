@@ -1,0 +1,35 @@
+server:
+  port: 8081
+  context-path: /ocp
+
+  jackson:
+    default-property-inclusion: ALWAYS
+  datasource:
+    url: jdbc:mysql://123.57.71.124:3306/wjlocp?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 11111qqaxl
+logging:
+  level:
+    root: info
+    com.cuit.wjlocp.mapper: DEBUG
+
+
+mybatis:
+  type-aliases-package: com.cuit.wjlocpentity
+  # mapper-locations: classpath:mapper/*.xml
+  configuration:
+    call-setters-on-nulls: true
+    cache-enabled: true
+
+#分页
+pagehelper:
+  helper-dialect: mysql
+  reasonable: true       #分页合理化
+  support-methods-arguments: true
+  params: count=countSql
+
+
+
+
+
