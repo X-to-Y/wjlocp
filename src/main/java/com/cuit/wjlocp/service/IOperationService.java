@@ -39,4 +39,7 @@ public interface IOperationService {
 
     //禁用运营角色
     public int disableActor(String actorName);
+
+//    //模糊查询运营角色
+//    public List<Actor> findActors(Actor actor);
 }

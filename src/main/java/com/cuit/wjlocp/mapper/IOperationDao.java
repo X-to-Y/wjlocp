@@ -73,12 +73,19 @@ public interface IOperationDao {
     int disableActor(String actorName);
 
     //模糊查询运营角色
-    @Select("<script>" +
-            "select *" +
-            "from a_actor" +
-            "<where>" +
-            "<if ")
-    Actor findActor(Actor actor);
+//    @Select("<script>" +
+//            "select *" +
+//            "from a_actor" +
+//            "<where>" +
+//            "<if test='actorName!=''>" +
+//            "and actorName like CONCAT('%',#{actorName},'%')" +
+//            "</if>" +
+//            "<if test='isFreeze != -1'>" +
+//            "and isFreeze like CONCAT('%',#{isFreeze},'%')" +
+//            "</if>" +
+//            "</where>" +
+//            "</script>")
+//    List<Actor> findActors(Actor actor);
 
 
 }
