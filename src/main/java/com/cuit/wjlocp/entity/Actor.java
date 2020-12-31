@@ -17,8 +17,16 @@ public class Actor implements Serializable {
     
     private Integer id;
     
-    private String name;
+    private String actorName;
 
+    private String memo;
+
+    private Integer isFreeze;
+
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -28,12 +36,37 @@ public class Actor implements Serializable {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getActorName() {
+        return actorName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setActorName(String actorName) {
+        this.actorName = actorName;
     }
 
+    public String getMemo() {
+        return memo;
+    }
+
+    public void setMemo(String memo) {
+        this.memo = memo;
+    }
+
+    public Integer getIsFreeze() {
+        return isFreeze;
+    }
+
+    public void setIsFreeze(Integer isFreeze) {
+        this.isFreeze = isFreeze;
+    }
+
+    @Override
+    public String toString() {
+        return "Actor{" +
+                "id=" + id +
+                ", actorName='" + actorName + '\'' +
+                ", memo='" + memo + '\'' +
+                ", isFreeze=" + isFreeze +
+                '}';
+    }
 }

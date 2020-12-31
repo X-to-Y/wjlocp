@@ -33,6 +33,13 @@ public class User implements Serializable {
     
     private String tel;
 
+    private Integer orgType;
+
+    private Integer sex;
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -106,4 +113,36 @@ public class User implements Serializable {
         this.tel = tel;
     }
 
+    public Integer getOrgType() {
+        return orgType;
+    }
+
+    public void setOrgType(Integer orgType) {
+        this.orgType = orgType;
+    }
+
+    public Integer getSex() {
+        return sex;
+    }
+
+    public void setSex(Integer sex) {
+        this.sex = sex;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", name='" + name + '\'' +
+                ", memo='" + memo + '\'' +
+                ", actortype=" + actortype +
+                ", isfreeze=" + isfreeze +
+                ", mail='" + mail + '\'' +
+                ", tel='" + tel + '\'' +
+                ", orgType=" + orgType +
+                ", sex=" + sex +
+                '}';
+    }
 }
