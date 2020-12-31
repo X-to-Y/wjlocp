@@ -20,4 +20,6 @@ public class UserService {
     public List<User> getAllUser(){
         return iuserdao.getAllUsers();
     }
+
+
 }

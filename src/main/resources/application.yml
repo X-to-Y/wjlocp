@@ -7,10 +7,10 @@ spring:
   jackson:
     default-property-inclusion: ALWAYS
   datasource:
-    url: jdbc:mysql://123.57.71.124:3306/wjlcop?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://45.131.24.104:3306/wjlocp?serverTimezone=UTC&useUnicode=true&characterEncoding=utf-8
     driver-class-name: com.mysql.cj.jdbc.Driver
     username: root
-    password: 11111qqaxl
+    password: root
 
 logging:
   level:
