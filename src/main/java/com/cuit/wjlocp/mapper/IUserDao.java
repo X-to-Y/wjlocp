@@ -18,4 +18,7 @@ public interface IUserDao {
     @Select("select * from p_user")
     List<User> getAllUsers();
 
+    @Select("select * from p_user " +
+            " where userName = #{username} and isFreeze = 0")
+    User getUserByUsername(String username);
 }

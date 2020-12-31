@@ -12,14 +12,12 @@ import java.util.List;
  * @date 2020/12/19-16:27
  */
 @Service
-public class UserService {
+public interface UserService {
 
-    @Autowired
-    private IUserDao iuserdao;
+    //获取所有用户
+    public List<User> getAllUser();
 
-    public List<User> getAllUser(){
-        return iuserdao.getAllUsers();
-    }
-
+    //根据用户名获取用户信息
+    public User getUserByUsername(String username);
 
 }
