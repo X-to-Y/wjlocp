@@ -17,17 +17,17 @@ public class User implements Serializable {
     
     private Integer id;
     
-    private String username;
+    private String userName;
     
-    private String password;
+    private String passWord;
     
     private String name;
     
     private String memo;
     
-    private Integer actortype;
+    private Integer actorType;
     
-    private Integer isfreeze;
+    private Integer isFreeze;
     
     private String mail;
     
@@ -49,20 +49,20 @@ public class User implements Serializable {
         this.id = id;
     }
 
-    public String getUsername() {
-        return username;
+    public String getUserName() {
+        return userName;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setUserName(String userName) {
+        this.userName = userName;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPassWord() {
+        return passWord;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPassWord(String passWord) {
+        this.passWord = passWord;
     }
 
     public String getName() {
@@ -81,20 +81,20 @@ public class User implements Serializable {
         this.memo = memo;
     }
 
-    public Integer getActortype() {
-        return actortype;
+    public Integer getActorType() {
+        return actorType;
     }
 
-    public void setActortype(Integer actortype) {
-        this.actortype = actortype;
+    public void setActorType(Integer actorType) {
+        this.actorType = actorType;
     }
 
-    public Integer getIsfreeze() {
-        return isfreeze;
+    public Integer getIsFreeze() {
+        return isFreeze;
     }
 
-    public void setIsfreeze(Integer isfreeze) {
-        this.isfreeze = isfreeze;
+    public void setIsFreeze(Integer isFreeze) {
+        this.isFreeze = isFreeze;
     }
 
     public String getMail() {
@@ -133,12 +133,12 @@ public class User implements Serializable {
     public String toString() {
         return "User{" +
                 "id=" + id +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
+                ", userName='" + userName + '\'' +
+                ", passWord='" + passWord + '\'' +
                 ", name='" + name + '\'' +
                 ", memo='" + memo + '\'' +
-                ", actortype=" + actortype +
-                ", isfreeze=" + isfreeze +
+                ", actorType=" + actorType +
+                ", isFreeze=" + isFreeze +
                 ", mail='" + mail + '\'' +
                 ", tel='" + tel + '\'' +
                 ", orgType=" + orgType +

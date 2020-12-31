@@ -16,12 +16,15 @@ public class TopuserToSubuser implements Serializable {
     
     private Integer id;
     
-    private Integer topid;
+    private Integer topId;
     
-    private Integer subid;
+    private Integer subId;
     
-    private Date createtime;
+    private Date createTime;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -31,28 +34,37 @@ public class TopuserToSubuser implements Serializable {
         this.id = id;
     }
 
-    public Integer getTopid() {
-        return topid;
+    public Integer getTopId() {
+        return topId;
     }
 
-    public void setTopid(Integer topid) {
-        this.topid = topid;
+    public void setTopId(Integer topId) {
+        this.topId = topId;
     }
 
-    public Integer getSubid() {
-        return subid;
+    public Integer getSubId() {
+        return subId;
     }
 
-    public void setSubid(Integer subid) {
-        this.subid = subid;
+    public void setSubId(Integer subId) {
+        this.subId = subId;
     }
 
-    public Date getCreatetime() {
-        return createtime;
+    public Date getCreateTime() {
+        return createTime;
     }
 
-    public void setCreatetime(Date createtime) {
-        this.createtime = createtime;
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 
+    @Override
+    public String toString() {
+        return "TopuserToSubuser{" +
+                "id=" + id +
+                ", topId=" + topId +
+                ", subId=" + subId +
+                ", createTime=" + createTime +
+                '}';
+    }
 }

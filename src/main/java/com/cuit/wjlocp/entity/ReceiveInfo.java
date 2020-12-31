@@ -15,22 +15,25 @@ public class ReceiveInfo implements Serializable {
     
     private Integer id;
     
-    private Integer receiveorder;
+    private Integer receiveOrder;
     
     private String name;
     
     private String tel;
     
-    private String receiveaddress;
+    private String receiveAddress;
     
-    private String receiveunit;
+    private String receiveUnit;
     
-    private String idcard;
+    private String idCard;
     
     private String memo;
     
-    private Integer isaddress;
+    private Integer isAddress;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -40,12 +43,12 @@ public class ReceiveInfo implements Serializable {
         this.id = id;
     }
 
-    public Integer getReceiveorder() {
-        return receiveorder;
+    public Integer getReceiveOrder() {
+        return receiveOrder;
     }
 
-    public void setReceiveorder(Integer receiveorder) {
-        this.receiveorder = receiveorder;
+    public void setReceiveOrder(Integer receiveOrder) {
+        this.receiveOrder = receiveOrder;
     }
 
     public String getName() {
@@ -64,28 +67,28 @@ public class ReceiveInfo implements Serializable {
         this.tel = tel;
     }
 
-    public String getReceiveaddress() {
-        return receiveaddress;
+    public String getReceiveAddress() {
+        return receiveAddress;
     }
 
-    public void setReceiveaddress(String receiveaddress) {
-        this.receiveaddress = receiveaddress;
+    public void setReceiveAddress(String receiveAddress) {
+        this.receiveAddress = receiveAddress;
     }
 
-    public String getReceiveunit() {
-        return receiveunit;
+    public String getReceiveUnit() {
+        return receiveUnit;
     }
 
-    public void setReceiveunit(String receiveunit) {
-        this.receiveunit = receiveunit;
+    public void setReceiveUnit(String receiveUnit) {
+        this.receiveUnit = receiveUnit;
     }
 
-    public String getIdcard() {
-        return idcard;
+    public String getIdCard() {
+        return idCard;
     }
 
-    public void setIdcard(String idcard) {
-        this.idcard = idcard;
+    public void setIdCard(String idCard) {
+        this.idCard = idCard;
     }
 
     public String getMemo() {
@@ -96,12 +99,26 @@ public class ReceiveInfo implements Serializable {
         this.memo = memo;
     }
 
-    public Integer getIsaddress() {
-        return isaddress;
+    public Integer getIsAddress() {
+        return isAddress;
     }
 
-    public void setIsaddress(Integer isaddress) {
-        this.isaddress = isaddress;
+    public void setIsAddress(Integer isAddress) {
+        this.isAddress = isAddress;
     }
 
+    @Override
+    public String toString() {
+        return "ReceiveInfo{" +
+                "id=" + id +
+                ", receiveOrder=" + receiveOrder +
+                ", name='" + name + '\'' +
+                ", tel='" + tel + '\'' +
+                ", receiveAddress='" + receiveAddress + '\'' +
+                ", receiveUnit='" + receiveUnit + '\'' +
+                ", idCard='" + idCard + '\'' +
+                ", memo='" + memo + '\'' +
+                ", isAddress=" + isAddress +
+                '}';
+    }
 }

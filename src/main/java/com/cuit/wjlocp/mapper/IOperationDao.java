@@ -73,19 +73,47 @@ public interface IOperationDao {
     int disableActor(String actorName);
 
     //模糊查询运营角色
-//    @Select("<script>" +
-//            "select *" +
-//            "from a_actor" +
-//            "<where>" +
-//            "<if test='actorName!=''>" +
-//            "and actorName like CONCAT('%',#{actorName},'%')" +
-//            "</if>" +
-//            "<if test='isFreeze != -1'>" +
-//            "and isFreeze like CONCAT('%',#{isFreeze},'%')" +
-//            "</if>" +
-//            "</where>" +
-//            "</script>")
-//    List<Actor> findActors(Actor actor);
+    @Select("<script>" +
+            "select *" +
+            "from a_actor" +
+            "<where>" +
+            "<if test=\"actorName != \'\'\">" +
+            "and actorName like CONCAT('%',#{actorName},'%')" +
+            "</if>" +
+            "<if test='isFreeze != -1'>" +
+            "and isFreeze like CONCAT('%',#{isFreeze},'%')" +
+            "</if>" +
+            "</where>" +
+            "</script>")
+    List<Actor> findActors(Actor actor);
+
+    //模糊查询运营账号
+    @Select("<script>" +
+            "select *\n" +
+            "from p_user u LEFT JOIN a_actor a on u.actorType = a.id LEFT JOIN a_org o on u.orgType = o.id\n" +
+            "<where>" +
+            "and actorType > 4 " +
+            "<if test=\"userName != \'\'\">" +
+            "and userName like CONCAT('%',#{userName},'%')" +
+            "</if>" +
+            "<if test=\"name != \'\'\">" +
+            "and name like CONCAT('%',#{name},'%')" +
+            "</if>" +
+            "<if test=\"tel != \'\'\">" +
+            "and tel like CONCAT('%',#{tel},'%')" +
+            "</if>" +
+            "<if test='isFreeze != -1'>" +
+            "and u.isFreeze like CONCAT('%',#{isFreeze},'%')" +
+            "</if>" +
+            "<if test=\"orgName !=  \'\'\">" +
+            "and orgName like CONCAT('%',#{orgName},'%')" +
+            "</if>" +
+            "<if test='sex != -1'>" +
+            "and sex like CONCAT('%',#{sex},'%')" +
+            "</if>" +
+            "</where>" +
+            "</script>")
+    List<UserWithName> findOperations(UserWithName userWithName);
 
 
 }

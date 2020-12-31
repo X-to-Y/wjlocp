@@ -122,6 +122,25 @@ public class OperationController {
         }
     }
     
-    //模糊查询运营角色
-//    @PostMapping()
+    //多条件查询运营角色
+    @PostMapping("findActors")
+    public Msg findActors(@RequestBody Actor actor){
+        if (actor != null) {
+            return Msg.success().add("msg",iOperationService.findActors(actor));
+        }
+        else{
+            return Msg.fail().add("msg","参数出错");
+        }
+    }
+
+    //多条件查询运营角色
+    @PostMapping("findOperations")
+    public Msg findOperations(@RequestBody UserWithName userWithName){
+        if (userWithName != null) {
+            return Msg.success().add("msg",iOperationService.findOperations(userWithName));
+        }
+        else{
+            return Msg.fail().add("msg","参数出错");
+        }
+    }
 }

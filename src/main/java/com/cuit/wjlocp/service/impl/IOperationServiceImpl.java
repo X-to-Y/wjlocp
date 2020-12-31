@@ -64,8 +64,13 @@ public class IOperationServiceImpl implements IOperationService {
         return iOperationDao.disableActor(actorName);
     }
 
-//    @Override
-//    public List<Actor> findActors(Actor actor) {
-//        return iOperationDao.findActors(actor);
-//    }
+    @Override
+    public List<Actor> findActors(Actor actor) {
+        return iOperationDao.findActors(actor);
+    }
+
+    @Override
+    public List<UserWithName> findOperations(UserWithName userWithName) {
+        return iOperationDao.findOperations(userWithName);
+    }
 }

@@ -15,10 +15,14 @@ public class MemberInfo implements Serializable {
     
     private Integer id;
     
-    private Integer basicid;
+    private Integer basicId;
     
-    private Integer receiveid;
+    private Integer receiveId;
 
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -28,20 +32,28 @@ public class MemberInfo implements Serializable {
         this.id = id;
     }
 
-    public Integer getBasicid() {
-        return basicid;
+    public Integer getBasicId() {
+        return basicId;
     }
 
-    public void setBasicid(Integer basicid) {
-        this.basicid = basicid;
+    public void setBasicId(Integer basicId) {
+        this.basicId = basicId;
     }
 
-    public Integer getReceiveid() {
-        return receiveid;
+    public Integer getReceiveId() {
+        return receiveId;
     }
 
-    public void setReceiveid(Integer receiveid) {
-        this.receiveid = receiveid;
+    public void setReceiveId(Integer receiveId) {
+        this.receiveId = receiveId;
     }
 
+    @Override
+    public String toString() {
+        return "MemberInfo{" +
+                "id=" + id +
+                ", basicId=" + basicId +
+                ", receiveId=" + receiveId +
+                '}';
+    }
 }

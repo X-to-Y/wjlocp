@@ -15,18 +15,21 @@ public class BasicInfo implements Serializable {
     
     private Integer id;
     
-    private String distributorname;
+    private String distributorName;
     
-    private String distributornum;
+    private String distributorNum;
     
-    private String distributorsubname;
+    private String distributorSubName;
     
-    private String orgname;
+    private String orgName;
     
-    private Integer distributortype;
+    private Integer distributorType;
     
     private String memo;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -36,44 +39,44 @@ public class BasicInfo implements Serializable {
         this.id = id;
     }
 
-    public String getDistributorname() {
-        return distributorname;
+    public String getDistributorName() {
+        return distributorName;
     }
 
-    public void setDistributorname(String distributorname) {
-        this.distributorname = distributorname;
+    public void setDistributorName(String distributorName) {
+        this.distributorName = distributorName;
     }
 
-    public String getDistributornum() {
-        return distributornum;
+    public String getDistributorNum() {
+        return distributorNum;
     }
 
-    public void setDistributornum(String distributornum) {
-        this.distributornum = distributornum;
+    public void setDistributorNum(String distributorNum) {
+        this.distributorNum = distributorNum;
     }
 
-    public String getDistributorsubname() {
-        return distributorsubname;
+    public String getDistributorSubName() {
+        return distributorSubName;
     }
 
-    public void setDistributorsubname(String distributorsubname) {
-        this.distributorsubname = distributorsubname;
+    public void setDistributorSubName(String distributorSubName) {
+        this.distributorSubName = distributorSubName;
     }
 
-    public String getOrgname() {
-        return orgname;
+    public String getOrgName() {
+        return orgName;
     }
 
-    public void setOrgname(String orgname) {
-        this.orgname = orgname;
+    public void setOrgName(String orgName) {
+        this.orgName = orgName;
     }
 
-    public Integer getDistributortype() {
-        return distributortype;
+    public Integer getDistributorType() {
+        return distributorType;
     }
 
-    public void setDistributortype(Integer distributortype) {
-        this.distributortype = distributortype;
+    public void setDistributorType(Integer distributorType) {
+        this.distributorType = distributorType;
     }
 
     public String getMemo() {
@@ -84,4 +87,16 @@ public class BasicInfo implements Serializable {
         this.memo = memo;
     }
 
+    @Override
+    public String toString() {
+        return "BasicInfo{" +
+                "id=" + id +
+                ", distributorName='" + distributorName + '\'' +
+                ", distributorNum='" + distributorNum + '\'' +
+                ", distributorSubName='" + distributorSubName + '\'' +
+                ", orgName='" + orgName + '\'' +
+                ", distributorType=" + distributorType +
+                ", memo='" + memo + '\'' +
+                '}';
+    }
 }
