@@ -1,6 +1,8 @@
 package com.cuit.wjlocp.mapper;
 
 import com.cuit.wjlocp.entity.Actor;
+import com.cuit.wjlocp.entity.Org;
+import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.vo.UserWithName;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
@@ -30,6 +32,11 @@ public interface IOperationDao {
             "from a_actor\n" +
             "where id > 4")
     List<Actor> selectAllActor();
+
+    //查询所有所属机构
+    @Select("select * \n" +
+            "from a_org")
+    List<Org> selectAllOrg();
     
     //启用运营账号
     @Update("update p_user\n" +
@@ -47,7 +54,7 @@ public interface IOperationDao {
     @Delete("delete\n" +
             "from p_user\n" +
             "where userName=#{userName}")
-    int deleteOperation(String userName);
+    int deleteAccount(String userName);
 
     //新增运营角色
     @Insert("insert into a_actor(actorName,memo)\n" +
@@ -115,5 +122,26 @@ public interface IOperationDao {
             "</script>")
     List<UserWithName> findOperations(UserWithName userWithName);
 
+    //新增运营账号
+    @Insert("insert into p_user(userName,name,orgType,actorType,sex,tel,mail)\n" +
+            "values(#{userName},#{name},#{orgType},#{actorType},#{sex},#{tel},#{mail})")
+    int addAccount(User user);
 
+    //修改运营账号信息
+    @Update("update p_user\n" +
+            "set userName = #{userName} ,name = #{name} ,orgType = #{orgType} ,actorType = #{actorType} ,sex = #{sex} , tel = #{tel}, mail = #{mail}\n" +
+            "where userName = #{userName}")
+    int changeAccount(User user);
+
+    //重置密码
+    @Update("update p_user\n" +
+            "set passWord = '12345'" +
+            "where userName = #{userName}")
+    int resetPassword(String userName);
+
+    //修改角色信息
+    @Update("update a_actor\n" +
+            "set actorName = #{actorName}, memo = #{memo}\n" +
+            "where actorName = #{actorName}")
+    int changeActorInfo(Actor actor);
 }
