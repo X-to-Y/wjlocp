@@ -5,6 +5,7 @@ import com.cuit.wjlocp.entity.BasicInfo;
 import com.cuit.wjlocp.entity.MemberInfo;
 import com.cuit.wjlocp.entity.ReceiveInfo;
 import com.cuit.wjlocp.vo.Basic;
+import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.VUser;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -41,10 +42,33 @@ public interface DistributorDao {
     public AccountInfo getAccountInfo(String distributorId);
 
     //根据父经销商id获取子经销商用户信息
-    @Select("select p2.id, p2.userName, p2.passWord, p2.name, p2.sex, p2.memo, a_org.orgName, p2.mail, p2.tel, p2.isFreeze, p2.dtName, p2.createPerson, p2.createTime, p2.modifyPerson, p2.modifyTime from " +
+    @Select("select p2.id, p2.userName, p2.passWord, p2.name, p2.sex, p2.memo, a_actor.actorName, a_org.orgName, p2.mail, p2.tel, p2.isFreeze, p2.dtName, p2.createPerson, p2.createTime, p2.modifyPerson, p2.modifyTime from " +
             " d_topusertosubuser inner join p_user p1 on d_topusertosubuser.topId = p1.id" +
             " left join p_user p2 on d_topusertosubuser.subId = p2.id" +
             " left join a_org on p2.orgType = a_org.id" +
+            " left join a_actor on p2.actorType = a_actor.id" +
             " where d_topusertosubuser.topId = #{topId}")
     public List<VUser> getUserInfoByTopId(String topId);
+
+    //模糊查询用户信息
+    @Select("<script>" +
+            "select p_user.id, userName, passWord, name, sex, p_user.memo, a_actor.actorName, a_org.orgName, mail, tel, p_user.isFreeze, dtName, createPerson, createTime, modifyPerson, modifyTime from " +
+            " p_user left join a_org on p_user.orgType = a_org.id" +
+            " left join a_actor on p_user.actorType = a_actor.id" +
+            " <where>" +
+            " <if test=\" userName !=null  \" >" +
+            "  and p_user.userName like concat(\"%\", #{userName}, \"%\")</if> " +
+            " <if test=\" isFreeze !=null  \" >" +
+            "  and p_user.isFreeze like concat(\"%\", #{isFreeze}, \"%\")</if> " +
+            " <if test=\" actorName !=null  \" >" +
+            "  and a_actor.actorName like concat(\"%\", #{actorName}, \"%\")</if> " +
+            " <if test=\" name !=null  \" >" +
+            "  and p_user.name like concat(\"%\", #{name}, \"%\")</if> " +
+            " <if test=\" tel !=null  \" >" +
+            "  and p_user.tel like concat(\"%\", #{tel}, \"%\")</if> " +
+            " <if test=\" sex !=null  \" >" +
+            "  and p_user.sex like concat(\"%\", #{sex}, \"%\")</if> " +
+            " </where>" +
+            "</script>")
+    public List<VUser> getUserInfoByLike(DistributorQuery query);
 }

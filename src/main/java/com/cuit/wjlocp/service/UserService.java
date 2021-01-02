@@ -2,6 +2,8 @@ package com.cuit.wjlocp.service;
 
 import com.cuit.wjlocp.mapper.IUserDao;
 import com.cuit.wjlocp.entity.User;
+import com.cuit.wjlocp.vo.DistributorQuery;
+import com.cuit.wjlocp.vo.VUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

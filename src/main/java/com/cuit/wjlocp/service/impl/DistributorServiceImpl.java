@@ -7,6 +7,7 @@ import com.cuit.wjlocp.entity.ReceiveInfo;
 import com.cuit.wjlocp.mapper.DistributorDao;
 import com.cuit.wjlocp.service.DistributorService;
 import com.cuit.wjlocp.vo.Basic;
+import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.Member;
 import com.cuit.wjlocp.vo.VUser;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,5 +73,11 @@ public class DistributorServiceImpl implements DistributorService {
             return userList;
         }
         return null;
+    }
+
+    @Override
+    @Transactional
+    public List<VUser> getUserInfoByLike(DistributorQuery query) {
+        return distributorDao.getUserInfoByLike(query);
     }
 }

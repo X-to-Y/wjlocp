@@ -5,14 +5,12 @@ import com.cuit.wjlocp.entity.MemberInfo;
 import com.cuit.wjlocp.service.DistributorService;
 import com.cuit.wjlocp.service.impl.DistributorServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
+import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.Member;
 import com.cuit.wjlocp.vo.VUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -66,6 +64,20 @@ public class DistributorController {
         }else {
             return Msg.fail()
                     .add("msg", "查询用户信息失败");
+        }
+    }
+
+    //模糊查询子经销商用户信息
+    @PostMapping("/like/sub/user")
+    public Msg getUserInfoByLike(@RequestBody DistributorQuery query){
+        List<VUser> userList = distributorService.getUserInfoByLike(query);
+        if(userList.size() > 0){
+            return Msg.success()
+                    .add("msg", "模糊查询用户成功")
+                    .add("userList", userList);
+        }else {
+            return Msg.fail()
+                    .add("msg", "模糊查询用户失败");
         }
     }
 }
