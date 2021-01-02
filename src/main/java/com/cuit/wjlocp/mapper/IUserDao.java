@@ -15,13 +15,16 @@ import java.util.List;
 @Repository
 public interface IUserDao {
 
+    //查询所有用户
     @Select("select * from p_user")
     List<User> getAllUsers();
 
+    //根据用户名查询启用状态的用户
     @Select("select * from p_user " +
             " where userName = #{username} and isFreeze = 0;")
     User getUserByUsername(String username);
 
+    //获取指定用户对应的菜单列表
     @Select("select permission from" +
             " p_user inner join a_actor on p_user.actorType = a_actor.id" +
             " inner join a_permission on a_actor.id = a_permission.actorId" +

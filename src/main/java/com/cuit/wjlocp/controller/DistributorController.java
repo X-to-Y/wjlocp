@@ -1,7 +1,39 @@
 package com.cuit.wjlocp.controller;
 
+import com.cuit.wjlocp.entity.MemberInfo;
+import com.cuit.wjlocp.service.DistributorService;
+import com.cuit.wjlocp.service.impl.DistributorServiceImpl;
+import com.cuit.wjlocp.utils.Msg;
+import com.cuit.wjlocp.vo.Member;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
 /**
  * Created by chocho on 2021/1/2.
+ * 经销商管理
+ * 控制层
  */
+@RestController
+@RequestMapping("/distributor")
 public class DistributorController {
+    @Autowired
+    private DistributorServiceImpl distributorService;
+
+    //根据经销商id查询经销商会员信息
+    @GetMapping("/memeinfo/by/id")
+    public Msg getMemeInfoByID(@RequestParam String distributorId){
+        Member member = distributorService.getMemberInfoByID(distributorId);
+        if(member != null){
+            return Msg.success()
+                    .add("msg", "查询会员信息成功")
+                    .add("memberInfo", member);
+        }else {
+            return Msg.fail()
+                    .add("msg", "查询会员信息失败");
+        }
+    }
 }

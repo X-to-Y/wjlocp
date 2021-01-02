@@ -1,0 +1,34 @@
+package com.cuit.wjlocp.mapper;
+
+import com.cuit.wjlocp.entity.BasicInfo;
+import com.cuit.wjlocp.entity.MemberInfo;
+import com.cuit.wjlocp.entity.ReceiveInfo;
+import com.cuit.wjlocp.vo.Basic;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Select;
+import org.springframework.stereotype.Repository;
+
+import java.util.List;
+
+/**
+ * Created by chocho on 2021/1/2.
+ * 经销商持久化层
+ */
+@Mapper
+@Repository
+public interface DistributorDao {
+    //根据经销商id查询收货信息
+    @Select("select * from " +
+            " i_distributorinfo inner join i_memberinfo on i_distributorinfo.memberId = i_memberinfo.id" +
+            " left join i_receiveinfo on i_receiveinfo.id =  i_memberinfo.receiveId " +
+            " where i_distributorinfo.id = #{distributorId}")
+    public List<ReceiveInfo> getReceiveInfoByID(String distributorId);
+
+    //根据经销商id查询基础信息
+    @Select("select i_basicinfo.id, distributorName, distributorNum, distributorSubName, orgName, d_distributortype.name, memo from " +
+            " i_distributorinfo inner join i_memberinfo on i_distributorinfo.memberId = i_memberinfo.id" +
+            " inner join i_basicinfo on i_basicinfo.id =  i_memberinfo.basicId " +
+            " left join d_distributortype on d_distributortype.id = i_basicinfo.distributorType" +
+            " where i_distributorinfo.id = #{distributorId}")
+    public Basic getBasicInfoByID(String distributorId);
+}
