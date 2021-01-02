@@ -21,4 +21,10 @@ public interface IUserDao {
     @Select("select * from p_user " +
             " where userName = #{username} and isFreeze = 0;")
     User getUserByUsername(String username);
+
+    @Select("select permission from" +
+            " p_user inner join a_actor on p_user.actorType = a_actor.id" +
+            " inner join a_permission on a_actor.id = a_permission.actorId" +
+            " where p_user.userName = #{username};")
+    List<String> getPermissionByUsername(String username);
 }

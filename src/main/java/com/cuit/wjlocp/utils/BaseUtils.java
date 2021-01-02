@@ -4,16 +4,9 @@ import org.apache.tomcat.util.buf.HexUtils;
 
 import java.util.Base64;
 
-/**
- * @author VX5
- * @Title: MJC
- * @ProjectName titlejudge
- * @Description: TODO
- * @date ${DAT}13:23
- */
 public class BaseUtils {
     /**
-     * base63加密
+     * base64加密
      * @param content
      * @return
      */
@@ -41,6 +34,11 @@ public class BaseUtils {
         return toHexString;
     }
 
+    /**
+     * 解密实现方法
+     * @param s
+     * @return
+     */
     public static String convertBase(String s){
         byte[] base64Encrypt = HexUtils.fromHexString(s);
 //        byte[] base64Encrypt = BaseUtils.base64Encrypt("123456789");
@@ -48,5 +46,10 @@ public class BaseUtils {
         byte[] base64Decrypt = com.cuit.wjlocp.utils.BaseUtils.base64Decrypt(base64Encrypt);
         String reslut = new String(base64Decrypt);
         return reslut;
+    }
+
+    public static void main(String[] args) {
+        System.out.println(BaseUtils.baseEncode("admin"));
+        //System.out.println(BaseUtils.convertBase("4d54497a"));
     }
 }

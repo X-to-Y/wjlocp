@@ -3,6 +3,7 @@ package com.cuit.wjlocp.service.impl;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.mapper.IUserDao;
 import com.cuit.wjlocp.service.UserService;
+import com.cuit.wjlocp.utils.BaseUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,5 +32,11 @@ public class UserServiceImpl implements UserService {
         }else{
             return null;
         }
+    }
+
+    @Override
+    public List<String> getPermissionByToken(String token) {
+        String username = BaseUtils.convertBase(token);
+        return userDao.getPermissionByUsername(username);
     }
 }

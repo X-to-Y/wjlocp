@@ -17,4 +17,7 @@ public interface UserService {
 
     //根据用户名获取用户信息
     public User getUserByUsername(String username);
+
+    //根据token获取角色id
+    public List<String> getPermissionByToken(String token);
 }
