@@ -1,6 +1,7 @@
 package com.cuit.wjlocp.controller;
 
 import com.cuit.wjlocp.entity.Actor;
+import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.service.impl.IOperationServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
 import com.cuit.wjlocp.vo.UserWithName;
@@ -14,6 +15,7 @@ import java.util.List;
  * @date 2020/12/25-20:21
  *
  * 运营账号管理类
+ * 控制层
  */
 
 
@@ -36,11 +38,15 @@ public class OperationController {
         return Msg.success().add("msg",iOperationService.selectAllActor());
     }
 
+    //查询所有所属机构
+    @GetMapping("allOrg")
+    public Msg selectAllOrg(){  return Msg.success().add("msg",iOperationService.selectAllOrg()); }
+
     //启用运营账号
     @GetMapping("enableOperation")
-    public Msg enable(@RequestParam("username") String username){
-        if (username!=null && !username.equals("")){
-            iOperationService.enableOperation(username);
+    public Msg enable(@RequestParam("userName") String userName){
+        if (userName!=null && !userName.equals("")){
+            iOperationService.enableOperation(userName);
             return Msg.success().add("msg", "启用成功！");
         }
         else{
@@ -50,9 +56,9 @@ public class OperationController {
 
     //禁用运营账号
     @GetMapping("disableOperation")
-    public Msg disable(@RequestParam("username") String username){
-        if (username!=null && !username.equals("")){
-            iOperationService.disableOperation(username);
+    public Msg disable(@RequestParam("userName") String userName){
+        if (userName!=null && !userName.equals("")){
+            iOperationService.disableOperation(userName);
             return Msg.success().add("msg", "禁用成功！");
         }
         else{
@@ -61,10 +67,10 @@ public class OperationController {
     }
 
     //删除运营账号
-    @GetMapping("deleteOperation")
-    public Msg deleteOperation(@RequestParam("username") String username){
+    @GetMapping("deleteAccount")
+    public Msg deleteOperation(@RequestParam("userName") String username){
         if (username!=null && !username.equals("")){
-            iOperationService.deleteOperation(username);
+            iOperationService.deleteAccount(username);
             return Msg.success().add("msg", "删除成功！");
         }
         else{
@@ -82,7 +88,7 @@ public class OperationController {
             return Msg.success().add("msg","新增成功！");
         }
         else{
-            return Msg.fail().add("msg","添加失败");
+            return Msg.fail().add("msg","新增失败");
         }
     }
 
@@ -122,6 +128,73 @@ public class OperationController {
         }
     }
     
-    //模糊查询运营角色
-//    @PostMapping()
+    //多条件查询运营角色
+    @PostMapping("findActors")
+    public Msg findActors(@RequestBody Actor actor){
+        if (actor != null) {
+            return Msg.success().add("msg",iOperationService.findActors(actor));
+        }
+        else{
+            return Msg.fail().add("msg","参数出错");
+        }
+    }
+
+    //多条件查询运营角色
+    @PostMapping("findOperations")
+    public Msg findOperations(@RequestBody UserWithName userWithName){
+        if (userWithName != null) {
+            return Msg.success().add("msg",iOperationService.findOperations(userWithName));
+        }
+        else{
+            return Msg.fail().add("msg","参数出错");
+        }
+    }
+
+    //新增运营账号
+    @PostMapping("addAccount")
+    public Msg addAccount(@RequestBody User user){
+        if (user != null){
+            iOperationService.addAccount(user);
+            return Msg.success().add("msg","新增成功！");
+        }
+        else{
+            return Msg.fail().add("msg","新增失败");
+        }
+    }
+
+    //修改运营账号信息
+    @PostMapping("changeAccount")
+    public Msg changeAccount(@RequestBody User user){
+        if (user != null){
+            iOperationService.changeAccount(user);
+            return Msg.success().add("msg","修改成功！");
+        }
+        else{
+            return Msg.fail().add("msg","修改失败");
+        }
+    }
+
+    //重置密码
+    @GetMapping("resetPassword")
+    public Msg resetPassword(@RequestParam String userName){
+        if (userName != null && !userName.equals("")) {
+            iOperationService.resetPassword(userName);
+            return Msg.success().add("msg","重置密码成功！");
+        }
+        else {
+            return Msg.fail().add("msg","重置密码失败！");
+        }
+    }
+
+    //修改角色信息
+    @PostMapping("changeActorInfo")
+    public Msg changeActorInfo(@RequestBody Actor actor){
+        if (actor != null && !actor.equals("")) {
+            iOperationService.changeActorInfo(actor);
+            return Msg.success().add("msg","修改信息成功！");
+        }
+        else {
+            return Msg.fail().add("msg","修改信息失败！");
+        }
+    }
 }

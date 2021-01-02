@@ -15,20 +15,24 @@ public class AccountInfo implements Serializable {
     
     private Integer id;
     
-    private String clientnum;
+    private String clientNum;
     
-    private String clientname;
+    private String clientName;
     
-    private Object creditlimit;
+    private Object creditLimit;
     
-    private Object deliveryblance;
+    private Object deliveryBlance;
     
-    private Object discountblance;
+    private Object discountBlance;
     
     private Object bond;
     
     private String memo;
 
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -38,44 +42,44 @@ public class AccountInfo implements Serializable {
         this.id = id;
     }
 
-    public String getClientnum() {
-        return clientnum;
+    public String getClientNum() {
+        return clientNum;
     }
 
-    public void setClientnum(String clientnum) {
-        this.clientnum = clientnum;
+    public void setClientNum(String clientNum) {
+        this.clientNum = clientNum;
     }
 
-    public String getClientname() {
-        return clientname;
+    public String getClientName() {
+        return clientName;
     }
 
-    public void setClientname(String clientname) {
-        this.clientname = clientname;
+    public void setClientName(String clientName) {
+        this.clientName = clientName;
     }
 
-    public Object getCreditlimit() {
-        return creditlimit;
+    public Object getCreditLimit() {
+        return creditLimit;
     }
 
-    public void setCreditlimit(Object creditlimit) {
-        this.creditlimit = creditlimit;
+    public void setCreditLimit(Object creditLimit) {
+        this.creditLimit = creditLimit;
     }
 
-    public Object getDeliveryblance() {
-        return deliveryblance;
+    public Object getDeliveryBlance() {
+        return deliveryBlance;
     }
 
-    public void setDeliveryblance(Object deliveryblance) {
-        this.deliveryblance = deliveryblance;
+    public void setDeliveryBlance(Object deliveryBlance) {
+        this.deliveryBlance = deliveryBlance;
     }
 
-    public Object getDiscountblance() {
-        return discountblance;
+    public Object getDiscountBlance() {
+        return discountBlance;
     }
 
-    public void setDiscountblance(Object discountblance) {
-        this.discountblance = discountblance;
+    public void setDiscountBlance(Object discountBlance) {
+        this.discountBlance = discountBlance;
     }
 
     public Object getBond() {
@@ -94,4 +98,17 @@ public class AccountInfo implements Serializable {
         this.memo = memo;
     }
 
+    @Override
+    public String toString() {
+        return "AccountInfo{" +
+                "id=" + id +
+                ", clientNum='" + clientNum + '\'' +
+                ", clientName='" + clientName + '\'' +
+                ", creditLimit=" + creditLimit +
+                ", deliveryBlance=" + deliveryBlance +
+                ", discountBlance=" + discountBlance +
+                ", bond=" + bond +
+                ", memo='" + memo + '\'' +
+                '}';
+    }
 }

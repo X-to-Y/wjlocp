@@ -16,10 +16,14 @@ public class Permission implements Serializable {
     
     private Integer id;
     
-    private Integer actorid;
+    private Integer actorId;
     
     private String permission;
 
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -29,12 +33,12 @@ public class Permission implements Serializable {
         this.id = id;
     }
 
-    public Integer getActorid() {
-        return actorid;
+    public Integer getActorId() {
+        return actorId;
     }
 
-    public void setActorid(Integer actorid) {
-        this.actorid = actorid;
+    public void setActorId(Integer actorId) {
+        this.actorId = actorId;
     }
 
     public String getPermission() {
@@ -45,4 +49,12 @@ public class Permission implements Serializable {
         this.permission = permission;
     }
 
+    @Override
+    public String toString() {
+        return "Permission{" +
+                "id=" + id +
+                ", actorId=" + actorId +
+                ", permission='" + permission + '\'' +
+                '}';
+    }
 }

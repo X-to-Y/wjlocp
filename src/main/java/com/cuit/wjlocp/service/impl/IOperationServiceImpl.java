@@ -1,6 +1,8 @@
 package com.cuit.wjlocp.service.impl;
 
 import com.cuit.wjlocp.entity.Actor;
+import com.cuit.wjlocp.entity.Org;
+import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.mapper.IOperationDao;
 import com.cuit.wjlocp.service.IOperationService;
 import com.cuit.wjlocp.vo.UserWithName;
@@ -30,6 +32,11 @@ public class IOperationServiceImpl implements IOperationService {
     }
 
     @Override
+    public List<Org> selectAllOrg() {
+        return iOperationDao.selectAllOrg();
+    }
+
+    @Override
     public int enableOperation(String userName) {
        return iOperationDao.enableOperation(userName);
     }
@@ -40,8 +47,8 @@ public class IOperationServiceImpl implements IOperationService {
     }
     
     @Override
-    public int deleteOperation(String userName){
-        return iOperationDao.deleteOperation(userName);
+    public int deleteAccount(String userName){
+        return iOperationDao.deleteAccount(userName);
     }
 
     @Override
@@ -64,8 +71,33 @@ public class IOperationServiceImpl implements IOperationService {
         return iOperationDao.disableActor(actorName);
     }
 
-//    @Override
-//    public List<Actor> findActors(Actor actor) {
-//        return iOperationDao.findActors(actor);
-//    }
+    @Override
+    public List<Actor> findActors(Actor actor) {
+        return iOperationDao.findActors(actor);
+    }
+
+    @Override
+    public List<UserWithName> findOperations(UserWithName userWithName) {
+        return iOperationDao.findOperations(userWithName);
+    }
+
+    @Override
+    public int addAccount(User user) {
+        return iOperationDao.addAccount(user);
+    }
+
+    @Override
+    public int changeAccount(User user) {
+        return iOperationDao.changeAccount(user);
+    }
+
+    @Override
+    public int resetPassword(String userName) {
+        return iOperationDao.resetPassword(userName);
+    }
+
+    @Override
+    public int changeActorInfo(Actor actor) {
+        return iOperationDao.changeActorInfo(actor);
+    }
 }

@@ -17,10 +17,14 @@ public class ActorFunction implements Serializable {
     
     private Integer id;
     
-    private Integer functionid;
+    private Integer functionId;
     
-    private Integer actorid;
+    private Integer actorId;
 
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -30,20 +34,28 @@ public class ActorFunction implements Serializable {
         this.id = id;
     }
 
-    public Integer getFunctionid() {
-        return functionid;
+    public Integer getFunctionId() {
+        return functionId;
     }
 
-    public void setFunctionid(Integer functionid) {
-        this.functionid = functionid;
+    public void setFunctionId(Integer functionId) {
+        this.functionId = functionId;
     }
 
-    public Integer getActorid() {
-        return actorid;
+    public Integer getActorId() {
+        return actorId;
     }
 
-    public void setActorid(Integer actorid) {
-        this.actorid = actorid;
+    public void setActorId(Integer actorId) {
+        this.actorId = actorId;
     }
 
+    @Override
+    public String toString() {
+        return "ActorFunction{" +
+                "id=" + id +
+                ", functionId=" + functionId +
+                ", actorId=" + actorId +
+                '}';
+    }
 }

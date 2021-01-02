@@ -17,10 +17,13 @@ public class DistributorInfo implements Serializable {
     
     private Integer id;
     
-    private Integer memberid;
+    private Integer memberId;
     
-    private Integer accountid;
+    private Integer accountId;
 
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -30,20 +33,28 @@ public class DistributorInfo implements Serializable {
         this.id = id;
     }
 
-    public Integer getMemberid() {
-        return memberid;
+    public Integer getMemberId() {
+        return memberId;
     }
 
-    public void setMemberid(Integer memberid) {
-        this.memberid = memberid;
+    public void setMemberId(Integer memberId) {
+        this.memberId = memberId;
     }
 
-    public Integer getAccountid() {
-        return accountid;
+    public Integer getAccountId() {
+        return accountId;
     }
 
-    public void setAccountid(Integer accountid) {
-        this.accountid = accountid;
+    public void setAccountId(Integer accountId) {
+        this.accountId = accountId;
     }
 
+    @Override
+    public String toString() {
+        return "DistributorInfo{" +
+                "id=" + id +
+                ", memberId=" + memberId +
+                ", accountId=" + accountId +
+                '}';
+    }
 }

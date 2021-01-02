@@ -15,10 +15,14 @@ public class UserToDistributor implements Serializable {
     
     private Integer id;
     
-    private Integer userid;
+    private Integer userId;
     
-    private Integer distributorid;
+    private Integer distributorId;
 
+
+    public static long getSerialVersionUID() {
+        return serialVersionUID;
+    }
 
     public Integer getId() {
         return id;
@@ -28,20 +32,28 @@ public class UserToDistributor implements Serializable {
         this.id = id;
     }
 
-    public Integer getUserid() {
-        return userid;
+    public Integer getUserId() {
+        return userId;
     }
 
-    public void setUserid(Integer userid) {
-        this.userid = userid;
+    public void setUserId(Integer userId) {
+        this.userId = userId;
     }
 
-    public Integer getDistributorid() {
-        return distributorid;
+    public Integer getDistributorId() {
+        return distributorId;
     }
 
-    public void setDistributorid(Integer distributorid) {
-        this.distributorid = distributorid;
+    public void setDistributorId(Integer distributorId) {
+        this.distributorId = distributorId;
     }
 
+    @Override
+    public String toString() {
+        return "UserToDistributor{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", distributorId=" + distributorId +
+                '}';
+    }
 }
