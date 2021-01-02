@@ -54,6 +54,12 @@ public class DistributorServiceImpl implements DistributorService {
     @Override
     @Transactional
     public AccountInfo getAccountInfoByID(String distributorId) {
+        if(distributorId != null && !"".equals(distributorId)) {
+            AccountInfo account = distributorDao.getAccountInfo(distributorId);
+            if(account != null){
+                return account;
+            }
+        }
         return null;
     }
 }

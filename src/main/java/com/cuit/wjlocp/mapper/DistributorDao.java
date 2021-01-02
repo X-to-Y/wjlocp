@@ -1,5 +1,6 @@
 package com.cuit.wjlocp.mapper;
 
+import com.cuit.wjlocp.entity.AccountInfo;
 import com.cuit.wjlocp.entity.BasicInfo;
 import com.cuit.wjlocp.entity.MemberInfo;
 import com.cuit.wjlocp.entity.ReceiveInfo;
@@ -31,4 +32,10 @@ public interface DistributorDao {
             " left join d_distributortype on d_distributortype.id = i_basicinfo.distributorType" +
             " where i_distributorinfo.id = #{distributorId}")
     public Basic getBasicInfoByID(String distributorId);
+
+    //根据经销商id查询账户信息
+    @Select("select * from" +
+            " i_distributorinfo inner join i_accountinfo on i_distributorinfo.accountId = i_accountinfo.id" +
+            " where i_distributorinfo.id = #{distributorId}")
+    public AccountInfo getAccountInfo(String distributorId);
 }
