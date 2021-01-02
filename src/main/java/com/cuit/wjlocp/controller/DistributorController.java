@@ -6,12 +6,15 @@ import com.cuit.wjlocp.service.DistributorService;
 import com.cuit.wjlocp.service.impl.DistributorServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
 import com.cuit.wjlocp.vo.Member;
+import com.cuit.wjlocp.vo.VUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 /**
  * Created by chocho on 2021/1/2.
@@ -49,6 +52,20 @@ public class DistributorController {
         }else {
             return Msg.fail()
                     .add("msg", "查询账户信息失败");
+        }
+    }
+
+    //查询指定经销商所有子经销商用户信息
+    @GetMapping("/user/by/topId")
+    public Msg getUserInfoByTopID(@RequestParam String topId){
+        List<VUser> userList = distributorService.getUserInfoByTopID(topId);
+        if(userList.size() > 0){
+            return Msg.success()
+                    .add("msg", "查询用户信息成功")
+                    .add("userList", userList);
+        }else {
+            return Msg.fail()
+                    .add("msg", "查询用户信息失败");
         }
     }
 }

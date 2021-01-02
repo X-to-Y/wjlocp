@@ -8,6 +8,7 @@ import com.cuit.wjlocp.mapper.DistributorDao;
 import com.cuit.wjlocp.service.DistributorService;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.Member;
+import com.cuit.wjlocp.vo.VUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -59,6 +60,16 @@ public class DistributorServiceImpl implements DistributorService {
             if(account != null){
                 return account;
             }
+        }
+        return null;
+    }
+
+    @Override
+    @Transactional
+    public List<VUser> getUserInfoByTopID(String topId) {
+        if(topId != null && !"".equals(topId)){
+            List<VUser> userList = distributorDao.getUserInfoByTopId(topId);
+            return userList;
         }
         return null;
     }
