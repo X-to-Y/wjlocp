@@ -1,5 +1,6 @@
 package com.cuit.wjlocp.controller;
 
+import com.cuit.wjlocp.entity.AccountInfo;
 import com.cuit.wjlocp.entity.MemberInfo;
 import com.cuit.wjlocp.service.DistributorService;
 import com.cuit.wjlocp.service.impl.DistributorServiceImpl;
@@ -34,6 +35,20 @@ public class DistributorController {
         }else {
             return Msg.fail()
                     .add("msg", "查询会员信息失败");
+        }
+    }
+
+    //根据经销商id查询经销商账户信息
+    @GetMapping("/accountinfo/by/id")
+    public Msg getAccountInfoByID(@RequestParam String distributorId){
+        AccountInfo account = distributorService.getAccountInfoByID(distributorId);
+        if(account != null){
+            return Msg.success()
+                    .add("msg", "查询账户信息成功")
+                    .add("accountInfo", account);
+        }else {
+            return Msg.fail()
+                    .add("msg", "查询账户信息失败");
         }
     }
 }

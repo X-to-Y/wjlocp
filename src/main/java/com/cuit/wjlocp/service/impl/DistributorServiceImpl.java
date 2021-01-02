@@ -1,5 +1,6 @@
 package com.cuit.wjlocp.service.impl;
 
+import com.cuit.wjlocp.entity.AccountInfo;
 import com.cuit.wjlocp.entity.BasicInfo;
 import com.cuit.wjlocp.entity.MemberInfo;
 import com.cuit.wjlocp.entity.ReceiveInfo;
@@ -9,6 +10,7 @@ import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.Member;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -22,6 +24,7 @@ public class DistributorServiceImpl implements DistributorService {
     private DistributorDao distributorDao;
 
     @Override
+    @Transactional
     public Member getMemberInfoByID(String distributorId) {
         if(distributorId == null || "".equals(distributorId)){
             return null;
@@ -47,4 +50,10 @@ public class DistributorServiceImpl implements DistributorService {
             return member;
         }
    }
+
+    @Override
+    @Transactional
+    public AccountInfo getAccountInfoByID(String distributorId) {
+        return null;
+    }
 }
