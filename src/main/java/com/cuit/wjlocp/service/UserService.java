@@ -11,13 +11,10 @@ import java.util.List;
  * @author X to Y
  * @date 2020/12/19-16:27
  */
-@Service
 public interface UserService {
-
     //获取所有用户
     public List<User> getAllUser();
 
     //根据用户名获取用户信息
     public User getUserByUsername(String username);
-
 }

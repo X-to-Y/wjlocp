@@ -2,6 +2,7 @@ package com.cuit.wjlocp.controller;
 
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.service.UserService;
+import com.cuit.wjlocp.service.impl.UserServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -14,11 +15,11 @@ import java.util.Map;
 /**
  * @author chocho
  */
-@RestController("/login")
+@RestController
 public class LoginController {
 
     @Autowired
-    private UserService userService;
+    private UserServiceImpl userService;
 
     /**
      * 登录
@@ -26,13 +27,15 @@ public class LoginController {
      * @param password
      * @return
      */
-    @PostMapping
+    @PostMapping("/login")
     public Msg Login(@RequestParam String username,
                      @RequestParam String password){
+
         User user = userService.getUserByUsername(username);
+
         if (user != null && user.getPassword() != null && user.getPassword().equals(password)) {
             return Msg.success().add("msg", "登录成功");
-        } else {
+        }else {
             return Msg.fail().add("msg", "账户或密码错误");
         }
     }

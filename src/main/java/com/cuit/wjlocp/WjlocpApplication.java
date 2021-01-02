@@ -11,8 +11,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @MapperScan("com.cuit.wjlocp")
 @EnableScheduling
 @EnableTransactionManagement
-
-
 public class WjlocpApplication {
 
 
