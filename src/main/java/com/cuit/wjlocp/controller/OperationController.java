@@ -44,9 +44,9 @@ public class OperationController {
 
     //启用运营账号
     @GetMapping("enableOperation")
-    public Msg enable(@RequestParam("userName") String userName){
-        if (userName!=null && !userName.equals("")){
-            iOperationService.enableOperation(userName);
+    public Msg enableOperation(@RequestParam Integer id){
+        if (id!=null && id != 0){
+            iOperationService.enableOperation(id);
             return Msg.success().add("msg", "启用成功！");
         }
         else{
@@ -56,9 +56,9 @@ public class OperationController {
 
     //禁用运营账号
     @GetMapping("disableOperation")
-    public Msg disable(@RequestParam("userName") String userName){
-        if (userName!=null && !userName.equals("")){
-            iOperationService.disableOperation(userName);
+    public Msg disableOperation(@RequestParam Integer id){
+        if (id!=null && id != 0){
+            iOperationService.disableOperation(id);
             return Msg.success().add("msg", "禁用成功！");
         }
         else{
@@ -68,9 +68,9 @@ public class OperationController {
 
     //删除运营账号
     @GetMapping("deleteAccount")
-    public Msg deleteOperation(@RequestParam("userName") String username){
-        if (username!=null && !username.equals("")){
-            iOperationService.deleteAccount(username);
+    public Msg deleteOperation(@RequestParam Integer id){
+        if (id!=null && id != 0){
+            iOperationService.deleteAccount(id);
             return Msg.success().add("msg", "删除成功！");
         }
         else{
@@ -94,9 +94,9 @@ public class OperationController {
 
     //删除运营角色
     @GetMapping("deleteActor")
-    public Msg deleteActor(@RequestParam String actorName){
-        if (actorName!=null && !actorName.equals("")){
-            iOperationService.deleteActor(actorName);
+    public Msg deleteActor(@RequestParam Integer id){
+        if (id!=null && id != 0){
+            iOperationService.deleteActor(id);
             return Msg.success().add("msg", "删除成功！");
         }
         else{
@@ -106,9 +106,9 @@ public class OperationController {
 
     //启用运营角色
     @GetMapping("enableActor")
-    public Msg enableActor(@RequestParam String actorName){
-        if (actorName!=null && !actorName.equals("")){
-            iOperationService.enableActor(actorName);
+    public Msg enableActor(@RequestParam Integer id){
+        if (id!=null && id != 0){
+            iOperationService.enableActor(id);
             return Msg.success().add("msg", "启用成功！");
         }
         else{
@@ -118,9 +118,9 @@ public class OperationController {
 
     //禁用运营角色
     @GetMapping("disableActor")
-    public Msg disableActor(@RequestParam String actorName){
-        if (actorName!=null && !actorName.equals("")){
-            iOperationService.disableActor(actorName);
+    public Msg disableActor(@RequestParam Integer id){
+        if (id!=null && id != 0){
+            iOperationService.disableActor(id);
             return Msg.success().add("msg", "禁用成功！");
         }
         else{
@@ -176,9 +176,9 @@ public class OperationController {
 
     //重置密码
     @GetMapping("resetPassword")
-    public Msg resetPassword(@RequestParam String userName){
-        if (userName != null && !userName.equals("")) {
-            iOperationService.resetPassword(userName);
+    public Msg resetPassword(@RequestParam Integer id){
+        if (id != null && id != 0) {
+            iOperationService.resetPassword(id);
             return Msg.success().add("msg","重置密码成功！");
         }
         else {
@@ -187,7 +187,7 @@ public class OperationController {
     }
 
     //修改角色信息
-    @PostMapping("changeActorInfo")
+    @PostMapping("changeActor")
     public Msg changeActorInfo(@RequestBody Actor actor){
         if (actor != null && !actor.equals("")) {
             iOperationService.changeActorInfo(actor);
