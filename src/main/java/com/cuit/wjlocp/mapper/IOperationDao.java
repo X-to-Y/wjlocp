@@ -41,20 +41,20 @@ public interface IOperationDao {
     //启用运营账号
     @Update("update p_user\n" +
             "set isFreeze = 0\n" +
-            "where userName = #{userName}")
-    int enableOperation(String userName);
+            "where id = #{id}")
+    int enableOperation(Integer id);
 
     //禁用运营账号
     @Update("update p_user\n" +
             "set isFreeze = 1\n" +
-            "where userName = #{userName}")
-    int disableOperation(String userName);
+            "where id = #{id}")
+    int disableOperation(Integer id);
 
     //删除运营账号
     @Delete("delete\n" +
             "from p_user\n" +
-            "where userName=#{userName}")
-    int deleteAccount(String userName);
+            "where id=#{userName}")
+    int deleteAccount(Integer id);
 
     //新增运营角色
     @Insert("insert into a_actor(actorName,memo)\n" +
@@ -64,26 +64,27 @@ public interface IOperationDao {
     //删除运营角色
     @Delete("delete \n" +
             "from a_actor\n" +
-            "where actorName=#{actorName}")
-    int deleteActor(String actorName);
+            "where id=#{id}")
+    int deleteActor(Integer id);
 
     //启用运营角色
     @Update("update a_actor\n" +
             "set isFreeze = 0\n" +
-            "where actorName = #{actorName}")
-    int enableActor(String actorName);
+            "where id = #{id}")
+    int enableActor(Integer id);
 
     //禁用运营角色
     @Update("update a_actor\n" +
             "set isFreeze = 1\n" +
-            "where actorName = #{actorName}")
-    int disableActor(String actorName);
+            "where id = #{id}")
+    int disableActor(Integer id);
 
     //模糊查询运营角色
     @Select("<script>" +
             "select *" +
             "from a_actor" +
             "<where>" +
+            "and id > 4 " +
             "<if test=\"actorName != \'\'\">" +
             "and actorName like CONCAT('%',#{actorName},'%')" +
             "</if>" +
@@ -130,18 +131,18 @@ public interface IOperationDao {
     //修改运营账号信息
     @Update("update p_user\n" +
             "set userName = #{userName} ,name = #{name} ,orgType = #{orgType} ,actorType = #{actorType} ,sex = #{sex} , tel = #{tel}, mail = #{mail}\n" +
-            "where userName = #{userName}")
+            "where id = #{id}")
     int changeAccount(User user);
 
     //重置密码
     @Update("update p_user\n" +
             "set passWord = '12345'" +
-            "where userName = #{userName}")
-    int resetPassword(String userName);
+            "where id = #{id}")
+    int resetPassword(Integer id);
 
     //修改角色信息
     @Update("update a_actor\n" +
             "set actorName = #{actorName}, memo = #{memo}\n" +
-            "where actorName = #{actorName}")
+            "where id = #{id}")
     int changeActorInfo(Actor actor);
 }

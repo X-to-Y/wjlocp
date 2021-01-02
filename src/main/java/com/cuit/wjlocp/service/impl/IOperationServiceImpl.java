@@ -37,18 +37,18 @@ public class IOperationServiceImpl implements IOperationService {
     }
 
     @Override
-    public int enableOperation(String userName) {
-       return iOperationDao.enableOperation(userName);
+    public int enableOperation(Integer id) {
+       return iOperationDao.enableOperation(id);
     }
 
     @Override
-    public int disableOperation(String userName) {
-        return iOperationDao.disableOperation(userName);
+    public int disableOperation(Integer id) {
+        return iOperationDao.disableOperation(id);
     }
     
     @Override
-    public int deleteAccount(String userName){
-        return iOperationDao.deleteAccount(userName);
+    public int deleteAccount(Integer id){
+        return iOperationDao.deleteAccount(id);
     }
 
     @Override
@@ -57,18 +57,18 @@ public class IOperationServiceImpl implements IOperationService {
     }
 
     @Override
-    public int deleteActor(String actorName) {
-        return iOperationDao.deleteActor(actorName);
+    public int deleteActor(Integer id) {
+        return iOperationDao.deleteActor(id);
     }
 
     @Override
-    public int enableActor(String actorName) {
-        return iOperationDao.enableActor(actorName);
+    public int enableActor(Integer id) {
+        return iOperationDao.enableActor(id);
     }
 
     @Override
-    public int disableActor(String actorName) {
-        return iOperationDao.disableActor(actorName);
+    public int disableActor(Integer id) {
+        return iOperationDao.disableActor(id);
     }
 
     @Override
@@ -92,8 +92,8 @@ public class IOperationServiceImpl implements IOperationService {
     }
 
     @Override
-    public int resetPassword(String userName) {
-        return iOperationDao.resetPassword(userName);
+    public int resetPassword(Integer id) {
+        return iOperationDao.resetPassword(id);
     }
 
     @Override

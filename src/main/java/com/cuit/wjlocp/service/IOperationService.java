@@ -25,25 +25,25 @@ public interface IOperationService {
     public List<Org> selectAllOrg();
 
     //启用运营账号
-    public int enableOperation(String userName);
+    public int enableOperation(Integer id);
 
     //禁用运营账号
-    public int disableOperation(String userName);
+    public int disableOperation(Integer id);
 
     //删除运营账号
-    public int deleteAccount(String userName);
+    public int deleteAccount(Integer id);
 
     //新增运营角色
     public int addActor(Actor actor);
 
     //删除运营角色
-    public int deleteActor(String actorName);
+    public int deleteActor(Integer id);
 
     //启用运营角色
-    public int enableActor(String actorName);
+    public int enableActor(Integer id);
 
     //禁用运营角色
-    public int disableActor(String actorName);
+    public int disableActor(Integer id);
 
     //多条件查询运营角色
     public List<Actor> findActors(Actor actor);
@@ -58,7 +58,7 @@ public interface IOperationService {
     public int changeAccount(User user);
 
     //重置密码
-    public int resetPassword(String userName);
+    public int resetPassword(Integer id);
 
     //修改角色信息
     public int changeActorInfo(Actor actor);
