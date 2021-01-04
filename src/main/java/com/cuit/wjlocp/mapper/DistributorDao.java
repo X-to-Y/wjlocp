@@ -10,7 +10,6 @@ import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
-
 import java.util.List;
 
 /**
@@ -73,6 +72,7 @@ public interface DistributorDao {
     public List<VUser> getUserInfoByLike(DistributorQuery query);
 
     //新增父子经销商关系
-    @Insert("insert into d_topusertosubuser values(#{topId}, #{subId}, #{createTime});")
+    @Insert("insert into d_topusertosubuser (id, topId, subId, createTime)" +
+            " values(#{id}, #{topId}, #{subId}, #{createTime});")
     public int addTopToSub(TopuserToSubuser tts);
 }
