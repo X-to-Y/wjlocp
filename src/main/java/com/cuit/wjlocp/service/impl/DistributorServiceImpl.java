@@ -112,4 +112,13 @@ public class DistributorServiceImpl implements DistributorService {
 
         return false;
     }
+
+    @Override
+    @Transactional
+    public boolean removeDistributor(String id) {
+        if(id != null && !"".equals(id)){
+            return distributorDao.deleteByID(id) > 0;
+        }
+        return false;
+    }
 }

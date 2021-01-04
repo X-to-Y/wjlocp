@@ -6,6 +6,7 @@ import com.cuit.wjlocp.entity.TopuserToSubuser;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.VUser;
+import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
@@ -75,4 +76,10 @@ public interface DistributorDao {
     @Insert("insert into d_topusertosubuser (id, topId, subId, createTime)" +
             " values(#{id}, #{topId}, #{subId}, #{createTime});")
     public int addTopToSub(TopuserToSubuser tts);
+
+    //删除经销商
+    //删除用户-用户经销商-经销商
+    @Delete("delete from xx" +
+            " where i_distributorinfo.id = #{id}")
+    public int deleteByID(String id);
 }

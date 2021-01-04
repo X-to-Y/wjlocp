@@ -28,4 +28,7 @@ public interface DistributorService {
 
     //新增子经销商信息
     public boolean addSubUserInfo(String token, User user);
+
+    //删除经销商
+    public boolean removeDistributor(String id);
 }

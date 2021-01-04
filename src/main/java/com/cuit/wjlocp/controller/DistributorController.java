@@ -94,4 +94,19 @@ public class DistributorController {
                     .add("msg", "新增子经销商失败");
         }
     }
+
+    //分配子经销商权限接口
+
+
+    //删除子经销商
+    @GetMapping("/delete/sub")
+    public Msg removeSubDistributor(@RequestParam String subId){
+        if(distributorService.removeDistributor(subId)){
+            return Msg.success()
+                    .add("msg", "删除子经销商成功");
+        }else{
+            return Msg.fail()
+                    .add("msg", "删除子经销商失败");
+        }
+    }
 }
