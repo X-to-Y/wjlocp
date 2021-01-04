@@ -1,5 +1,8 @@
 package com.cuit.wjlocp.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Entity;
 import java.util.Date;
 import java.io.Serializable;
@@ -19,7 +22,9 @@ public class TopuserToSubuser implements Serializable {
     private Integer topId;
     
     private Integer subId;
-    
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+    @JsonFormat(pattern="yyyy-MM-dd HH:mm:ss",timezone = "GMT+8")
     private Date createTime;
 
     public static long getSerialVersionUID() {

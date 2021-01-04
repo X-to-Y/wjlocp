@@ -1,6 +1,7 @@
 package com.cuit.wjlocp.mapper;
 
 import com.cuit.wjlocp.entity.User;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -30,4 +31,13 @@ public interface IUserDao {
             " inner join a_permission on a_actor.id = a_permission.actorId" +
             " where p_user.userName = #{username};")
     List<String> getPermissionByUsername(String username);
+
+    //新增用户信息
+    @Insert("insert into p_user (userName, passWord, name, actorType, sex, tel, mail, memo, isFreeze, createTime)" +
+            " values(#{userName}, #{passWord}, #{name}, #{actorType}, #{sex}, #{tel}, #{mail}, #{memo}, #{isFreeze}, #{createTime});")
+    public int addUserInfo(User user);
+
+    //根据用户名获取用户Id
+    @Select("select id from p_user where userName = #{username};")
+    public Integer getUserIDByUsername(String username);
 }

@@ -9,6 +9,10 @@ import com.cuit.wjlocp.entity.User;
 public class VUser extends User {
     //机构名称
     private String orgName;
+    //角色名称
+    private String actorName;
+    //字符性别
+    private String ssex;
 
     public String getOrgName() {
         return orgName;
@@ -16,5 +20,21 @@ public class VUser extends User {
 
     public void setOrgName(String orgName) {
         this.orgName = orgName;
+    }
+
+    public String getActorName() {
+        return actorName;
+    }
+
+    public void setActorName(String actorName) {
+        this.actorName = actorName;
+    }
+
+    public String getSsex() {
+        return ssex;
+    }
+
+    public void setSsex(String ssex) {
+        this.ssex = ssex;
     }
 }

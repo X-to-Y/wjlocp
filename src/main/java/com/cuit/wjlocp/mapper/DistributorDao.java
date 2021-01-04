@@ -1,12 +1,12 @@
 package com.cuit.wjlocp.mapper;
 
 import com.cuit.wjlocp.entity.AccountInfo;
-import com.cuit.wjlocp.entity.BasicInfo;
-import com.cuit.wjlocp.entity.MemberInfo;
 import com.cuit.wjlocp.entity.ReceiveInfo;
+import com.cuit.wjlocp.entity.TopuserToSubuser;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.VUser;
+import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 import org.springframework.stereotype.Repository;
@@ -71,4 +71,8 @@ public interface DistributorDao {
             " </where>" +
             "</script>")
     public List<VUser> getUserInfoByLike(DistributorQuery query);
+
+    //新增父子经销商关系
+    @Insert("insert into d_topusertosubuser values(#{topId}, #{subId}, #{createTime});")
+    public int addTopToSub(TopuserToSubuser tts);
 }

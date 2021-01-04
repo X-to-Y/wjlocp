@@ -1,11 +1,10 @@
 package com.cuit.wjlocp.service.impl;
 
-import com.cuit.wjlocp.entity.AccountInfo;
-import com.cuit.wjlocp.entity.BasicInfo;
-import com.cuit.wjlocp.entity.MemberInfo;
-import com.cuit.wjlocp.entity.ReceiveInfo;
+import com.cuit.wjlocp.entity.*;
 import com.cuit.wjlocp.mapper.DistributorDao;
+import com.cuit.wjlocp.mapper.IUserDao;
 import com.cuit.wjlocp.service.DistributorService;
+import com.cuit.wjlocp.utils.BaseUtils;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.Member;
@@ -14,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -24,6 +24,9 @@ import java.util.List;
 public class DistributorServiceImpl implements DistributorService {
     @Autowired
     private DistributorDao distributorDao;
+
+    @Autowired
+    private IUserDao userDao;
 
     @Override
     @Transactional
@@ -79,5 +82,34 @@ public class DistributorServiceImpl implements DistributorService {
     @Transactional
     public List<VUser> getUserInfoByLike(DistributorQuery query) {
         return distributorDao.getUserInfoByLike(query);
+    }
+
+    @Override
+    @Transactional
+    public boolean addSubUserInfo(String token, User user) {
+        if(user != null){
+            //设置默认密码123
+            user.setPassWord("123");
+            //启用状态
+            user.setIsFreeze(0);
+            //创建人名字
+            user.setCreatePerson("admin");
+            //创建时间
+            user.setCreateTime(new Date());
+            userDao.addUserInfo(user);
+            //获取父用户Id
+            String username = BaseUtils.convertBase(token);
+            Integer topId = userDao.getUserIDByUsername(username);
+            Integer subId = userDao.getUserIDByUsername(user.getUserName());
+            if(topId.byteValue() != 0 && subId.byteValue() != 0) {
+                TopuserToSubuser tts = new TopuserToSubuser();
+                tts.setCreateTime(new Date());
+                tts.setTopId(topId);
+                tts.setSubId(subId);
+                return distributorDao.addTopToSub(tts) > 0;
+            }
+        }
+
+        return false;
     }
 }

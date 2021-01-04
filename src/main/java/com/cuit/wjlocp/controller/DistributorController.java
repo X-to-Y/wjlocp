@@ -2,6 +2,7 @@ package com.cuit.wjlocp.controller;
 
 import com.cuit.wjlocp.entity.AccountInfo;
 import com.cuit.wjlocp.entity.MemberInfo;
+import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.service.DistributorService;
 import com.cuit.wjlocp.service.impl.DistributorServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
@@ -78,6 +79,19 @@ public class DistributorController {
         }else {
             return Msg.fail()
                     .add("msg", "模糊查询用户失败");
+        }
+    }
+
+    //新增子经销商用户信息
+    @PostMapping("/new/user")
+    public Msg addSubUserInfo(@RequestParam String token,
+                              @RequestBody User user){
+        if(distributorService.addSubUserInfo(token, user)){
+            return Msg.success()
+                    .add("msg", "新增子经销商成功");
+        }else{
+            return Msg.fail()
+                    .add("msg", "新增子经销商失败");
         }
     }
 }
