@@ -4,6 +4,7 @@ import com.cuit.wjlocp.entity.Actor;
 import com.cuit.wjlocp.entity.Org;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.vo.UserWithName;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -16,10 +17,10 @@ import java.util.List;
 public interface IOperationService {
 
     //查询所有运营账号
-    public List<UserWithName> selectAllOpertaion();
+    public Page<UserWithName> selectAllOpertaion();
 
     //查询所有运营角色
-    public List<Actor> selectAllActor();
+    public Page<Actor>  selectAllActor();
 
     //查询所有所属机构
     public List<Org> selectAllOrg();
@@ -46,10 +47,10 @@ public interface IOperationService {
     public int disableActor(Integer id);
 
     //多条件查询运营角色
-    public List<Actor> findActors(Actor actor);
+    public Page<Actor> findActors(Actor actor);
 
     //多条件查询运营账号
-    public List<UserWithName> findOperations(UserWithName userWithName);
+    public Page<UserWithName> findOperations(UserWithName userWithName);
 
     //新增运营账号
     public int addAccount(User user);

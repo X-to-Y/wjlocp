@@ -1,6 +1,7 @@
 package com.cuit.wjlocp.service;
 
 import com.cuit.wjlocp.entity.User;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -12,11 +13,24 @@ import java.util.List;
  */
 public interface IDtAcctService {
 
-    List<User> selectAllDt();
 
-    List<User> findDt(User user);
+    Page<User> selectAllDt();
 
-    int addDt(User user);
+    Page<User> findDt(User user);
+
+    int enableDt(Integer id);
+
+    int disableDt(Integer id);
+
+    int addDt(User user, String token);
+
+    int modifyDt(User user, String token);
+
+    int deleteDt(Integer id);
+
+    int resetPassword(Integer id);
+
+
 
 
 }

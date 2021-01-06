@@ -4,6 +4,7 @@ import com.cuit.wjlocp.entity.Actor;
 import com.cuit.wjlocp.entity.Org;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.vo.UserWithName;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
@@ -25,59 +26,18 @@ public interface IOperationDao {
     @Select("select *\n" +
             "from p_user u LEFT JOIN a_actor a on u.actorType = a.id LEFT JOIN a_org o on u.orgType = o.id\n" +
             "where actorType >= 4")
-    List<UserWithName> selectAllOperation();
+    Page<UserWithName> selectAllOperation();
 
     //查询所有运营角色
     @Select("select *\n" +
             "from a_actor\n" +
             "where id > 4")
-    List<Actor> selectAllActor();
+    Page<Actor> selectAllActor();
 
     //查询所有所属机构
     @Select("select * \n" +
             "from a_org")
     List<Org> selectAllOrg();
-    
-    //启用运营账号
-    @Update("update p_user\n" +
-            "set isFreeze = 0\n" +
-            "where id = #{id}")
-    int enableOperation(Integer id);
-
-    //禁用运营账号
-    @Update("update p_user\n" +
-            "set isFreeze = 1\n" +
-            "where id = #{id}")
-    int disableOperation(Integer id);
-
-    //删除运营账号
-    @Delete("delete\n" +
-            "from p_user\n" +
-            "where id=#{userName}")
-    int deleteAccount(Integer id);
-
-    //新增运营角色
-    @Insert("insert into a_actor(actorName,memo)\n" +
-            "values(#{actorName},#{memo})")
-    int addActor(Actor actor);
-
-    //删除运营角色
-    @Delete("delete \n" +
-            "from a_actor\n" +
-            "where id=#{id}")
-    int deleteActor(Integer id);
-
-    //启用运营角色
-    @Update("update a_actor\n" +
-            "set isFreeze = 0\n" +
-            "where id = #{id}")
-    int enableActor(Integer id);
-
-    //禁用运营角色
-    @Update("update a_actor\n" +
-            "set isFreeze = 1\n" +
-            "where id = #{id}")
-    int disableActor(Integer id);
 
     //模糊查询运营角色
     @Select("<script>" +
@@ -93,7 +53,7 @@ public interface IOperationDao {
             "</if>" +
             "</where>" +
             "</script>")
-    List<Actor> findActors(Actor actor);
+    Page<Actor> findActors(Actor actor);
 
     //模糊查询运营账号
     @Select("<script>" +
@@ -121,7 +81,48 @@ public interface IOperationDao {
             "</if>" +
             "</where>" +
             "</script>")
-    List<UserWithName> findOperations(UserWithName userWithName);
+    Page<UserWithName> findOperations(UserWithName userWithName);
+    
+    //启用运营账号
+    @Update("update p_user\n" +
+            "set isFreeze = 0\n" +
+            "where id = #{id}")
+    int enableOperation(Integer id);
+
+    //禁用运营账号
+    @Update("update p_user\n" +
+            "set isFreeze = 1\n" +
+            "where id = #{id}")
+    int disableOperation(Integer id);
+
+    //删除运营账号
+    @Delete("delete\n" +
+            "from p_user\n" +
+            "where id=#{id}")
+    int deleteAccount(Integer id);
+
+    //新增运营角色
+    @Insert("insert into a_actor(actorName,memo)\n" +
+            "values(#{actorName},#{memo})")
+    int addActor(Actor actor);
+
+    //删除运营角色
+    @Delete("delete \n" +
+            "from a_actor\n" +
+            "where id=#{id}")
+    int deleteActor(Integer id);
+
+    //启用运营角色
+    @Update("update a_actor\n" +
+            "set isFreeze = 0\n" +
+            "where id = #{id}")
+    int enableActor(Integer id);
+
+    //禁用运营角色
+    @Update("update a_actor\n" +
+            "set isFreeze = 1\n" +
+            "where id = #{id}")
+    int disableActor(Integer id);
 
     //新增运营账号
     @Insert("insert into p_user(userName,name,orgType,actorType,sex,tel,mail)\n" +
