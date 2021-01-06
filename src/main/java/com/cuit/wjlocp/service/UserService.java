@@ -1,5 +1,6 @@
 package com.cuit.wjlocp.service;
 
+import com.cuit.wjlocp.entity.Permission;
 import com.cuit.wjlocp.mapper.IUserDao;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.vo.DistributorQuery;
@@ -21,5 +22,5 @@ public interface UserService {
     public User getUserByUsername(String username);
 
     //根据token获取角色id
-    public List<String> getPermissionByToken(String token);
+    public List<Permission> getPermissionByToken(String token);
 }

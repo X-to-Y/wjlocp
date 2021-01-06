@@ -89,7 +89,7 @@ public class DistributorServiceImpl implements DistributorService {
     public boolean addSubUserInfo(String token, User user) {
         if(user != null){
             //设置默认密码123
-            user.setPassWord("123");
+            user.setPassWord("12345");
             //启用状态
             user.setIsFreeze(0);
             //创建人名字

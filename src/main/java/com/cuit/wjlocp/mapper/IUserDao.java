@@ -1,5 +1,6 @@
 package com.cuit.wjlocp.mapper;
 
+import com.cuit.wjlocp.entity.Permission;
 import com.cuit.wjlocp.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -25,12 +26,9 @@ public interface IUserDao {
             " where userName = #{username} and isFreeze = 0;")
     User getUserByUsername(String username);
 
-    //获取指定用户对应的菜单列表
-    @Select("select permission from" +
-            " p_user inner join a_actor on p_user.actorType = a_actor.id" +
-            " inner join a_permission on a_actor.id = a_permission.actorId" +
-            " where p_user.userName = #{username};")
-    List<String> getPermissionByUsername(String username);
+    //获取对应的菜单列表
+    @Select("select * from a_permission where actorId = #{actorId}")
+    List<Permission> getPermissionByActorId(Integer actorId);
 
     //新增用户信息
     @Insert("insert into p_user (userName, passWord, name, actorType, sex, tel, mail, memo, isFreeze, createTime)" +
@@ -40,4 +38,8 @@ public interface IUserDao {
     //根据用户名获取用户Id
     @Select("select id from p_user where userName = #{username};")
     public Integer getUserIDByUsername(String username);
+
+    //根据用户名获取角色id
+    @Select("select actorType from p_user where userName = #{userName}")
+    public Integer getActorTypeByUsername(String username);
 }

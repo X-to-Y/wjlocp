@@ -1,5 +1,6 @@
 package com.cuit.wjlocp.controller;
 
+import com.cuit.wjlocp.entity.Permission;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.service.UserService;
 import com.cuit.wjlocp.service.impl.UserServiceImpl;
@@ -53,7 +54,6 @@ public class LoginController {
      * @return
      * @throws Exception
      */
-    //接口有问题，24的判别
     @GetMapping("/menu")
     public Msg getMenuByToken(HttpServletResponse response,
                               @RequestParam String token)throws Exception{
@@ -61,12 +61,13 @@ public class LoginController {
             ResponseUtil.returnErrorContent(400, response, "token发生异常");
         }
         //根据token得到对应菜单列表
-        List<String> permission = userService.getPermissionByToken(token);
+        List<Permission> permission = userService.getPermissionByToken(token);
 
         if(permission.size() > 0){
             return Msg.success()
                     .add("msg", "菜单获取成功")
-                    .add("menuList", permission);
+                    .add("menuList", permission)
+                    .add("actorId", permission.get(0).getActorId());
         }else {
             return Msg.success()
                     .add("msg", "菜单获取失败");

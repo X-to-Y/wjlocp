@@ -1,5 +1,6 @@
 package com.cuit.wjlocp.service.impl;
 
+import com.cuit.wjlocp.entity.Permission;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.mapper.IUserDao;
 import com.cuit.wjlocp.service.UserService;
@@ -35,8 +36,13 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<String> getPermissionByToken(String token) {
+    public List<Permission> getPermissionByToken(String token) {
         String username = BaseUtils.convertBase(token);
-        return userDao.getPermissionByUsername(username);
+        Integer actorType = userDao.getActorTypeByUsername(username);
+        if(actorType >= 4) {//运营
+            return userDao.getPermissionByActorId(4);
+        }else {//经销商
+            return userDao.getPermissionByActorId(2);
+        }
     }
 }
