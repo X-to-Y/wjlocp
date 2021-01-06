@@ -33,7 +33,7 @@ public class DistributorController {
         if(basicList.size() > 0){
             return Msg.success()
                     .add("msg", "查询基础信息成功")
-                    .add("basicInfoList", basicList);
+                    .add("data", basicList);
         }else {
             return Msg.fail()
                     .add("msg", "查询基础信息失败");
@@ -47,7 +47,7 @@ public class DistributorController {
         if(receiveList.size() > 0){
             return Msg.success()
                     .add("msg", "查询收货信息成功")
-                    .add("basicInfoList", receiveList);
+                    .add("data", receiveList);
         }else {
             return Msg.fail()
                     .add("msg", "查询收货信息失败");
@@ -61,7 +61,7 @@ public class DistributorController {
         if(account != null){
             return Msg.success()
                     .add("msg", "查询账户信息成功")
-                    .add("accountInfo", account);
+                    .add("data", account);
         }else {
             return Msg.fail()
                     .add("msg", "查询账户信息失败");
@@ -75,7 +75,7 @@ public class DistributorController {
         if(userList.size() > 0){
             return Msg.success()
                     .add("msg", "查询用户信息成功")
-                    .add("userList", userList);
+                    .add("data", userList);
         }else {
             return Msg.fail()
                     .add("msg", "查询用户信息失败");
@@ -89,7 +89,7 @@ public class DistributorController {
         if(userList.size() > 0){
             return Msg.success()
                     .add("msg", "模糊查询用户成功")
-                    .add("userList", userList);
+                    .add("data", userList);
         }else {
             return Msg.fail()
                     .add("msg", "模糊查询用户失败");

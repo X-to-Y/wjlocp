@@ -67,7 +67,7 @@ public class LoginController {
         if(permission.size() > 0){
             return Msg.success()
                     .add("msg", "菜单获取成功")
-                    .add("menuList", permission)
+                    .add("data", permission)
                     .add("actorId", permission.get(0).getActorId());
         }else {
             return Msg.success()
