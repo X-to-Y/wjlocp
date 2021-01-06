@@ -31,4 +31,10 @@ public interface DistributorService {
 
     //删除经销商
     public boolean removeDistributor(String id);
+
+    //启用经销商
+    public boolean enableDistributor(Integer id);
+
+    //禁用经销商
+    public boolean disableDistributor(Integer id);
 }

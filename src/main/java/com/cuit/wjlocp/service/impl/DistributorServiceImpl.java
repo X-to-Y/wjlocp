@@ -121,4 +121,22 @@ public class DistributorServiceImpl implements DistributorService {
         }
         return false;
     }
+
+    @Override
+    @Transactional
+    public boolean enableDistributor(Integer id) {
+        if(id != null){
+            return distributorDao.enableDistributor(id) > 0;
+        }
+        return false;
+    }
+
+    @Override
+    @Transactional
+    public boolean disableDistributor(Integer id) {
+        if(id != null){
+            return distributorDao.disableDistributor(id) > 0;
+        }
+        return false;
+    }
 }

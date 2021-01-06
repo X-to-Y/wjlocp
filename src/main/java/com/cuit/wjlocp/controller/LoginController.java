@@ -38,7 +38,8 @@ public class LoginController {
             return Msg.success()
                     .add("msg", "登录成功")
                     //token 是由用户名加密后所得
-                    .add("token", BaseUtils.baseEncode(user.getUserName()));
+                    .add("token", BaseUtils.baseEncode(user.getUserName()))
+                    .add("userName", user.getUserName());
         }else {
             return Msg.fail()
                     .add("msg", "账户或密码错误");

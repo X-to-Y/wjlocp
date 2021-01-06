@@ -6,10 +6,7 @@ import com.cuit.wjlocp.entity.TopuserToSubuser;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.VUser;
-import org.apache.ibatis.annotations.Delete;
-import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import java.util.List;
 
@@ -82,4 +79,16 @@ public interface DistributorDao {
     @Delete("delete from xx" +
             " where i_distributorinfo.id = #{id}")
     public int deleteByID(String id);
+
+    //启用经销商
+    @Update("update p_user\n" +
+            " set isFreeze = 0\n" +
+            " where id = #{id}")
+    public int enableDistributor(Integer id);
+
+    //禁用经销商
+    @Update("update p_user\n" +
+            " set isFreeze = 1\n" +
+            " where id = #{id}")
+    public int disableDistributor(Integer id);
 }

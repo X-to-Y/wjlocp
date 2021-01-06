@@ -109,4 +109,28 @@ public class DistributorController {
                     .add("msg", "删除子经销商失败");
         }
     }
+
+    //启用子经销商
+    @GetMapping("/enable/sub")
+    public Msg enableSubDistributor(@RequestParam Integer id){
+        if(distributorService.enableDistributor(id)){
+            return Msg.success()
+                    .add("msg", "启用子经销商成功");
+        }else{
+            return Msg.fail()
+                    .add("msg", "启用子经销商失败");
+        }
+    }
+
+    //禁用子经销商
+    @GetMapping("/disable/sub")
+    public Msg disableSubDistributor(@RequestParam Integer id){
+        if(distributorService.disableDistributor(id)){
+            return Msg.success()
+                    .add("msg", "禁用子经销商成功");
+        }else{
+            return Msg.fail()
+                    .add("msg", "禁用子经销商失败");
+        }
+    }
 }
