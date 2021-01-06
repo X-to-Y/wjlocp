@@ -50,13 +50,14 @@ public class LoginController {
     /**
      * 获取菜单列表
      * @param response
-     * @param token
+     * @param request
      * @return
      * @throws Exception
      */
     @GetMapping("/menu")
     public Msg getMenuByToken(HttpServletResponse response,
-                              @RequestParam String token)throws Exception{
+                              HttpServletRequest request)throws Exception{
+        String token = request.getHeader("token");
         if(token == null || "".equals(token)){
             ResponseUtil.returnErrorContent(400, response, "token发生异常");
         }

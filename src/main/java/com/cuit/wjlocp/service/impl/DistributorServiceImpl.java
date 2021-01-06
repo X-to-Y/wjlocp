@@ -30,29 +30,14 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     @Transactional
-    public Member getMemberInfoByID(String distributorId) {
-        if(distributorId == null || "".equals(distributorId)){
+    public List<Basic> getMemberInfoByID(String token) {
+        if(token == null || "".equals(token)){
             return null;
         }else {
-            Member member = new Member();
+            Basic basic = new Basic();
             //获取基础信息
-            Basic basic = distributorDao.getBasicInfoByID(distributorId);
-            if(basic != null ){
-                member.setId(basic.getId());
-                member.setDistributorName(basic.getDistributorName());
-                member.setDistributorNum(basic.getDistributorNum());
-                member.setDistributorSubName(basic.getDistributorSubName());
-                member.setOrgName(basic.getOrgName());
-                member.setName(basic.getName());
-                member.setMemo(basic.getMemo());
-            }
-            //获取收货地址
-            List<ReceiveInfo> receiveInfoList = distributorDao.getReceiveInfoByID(distributorId);
-            if(receiveInfoList.size() > 0){
-                member.setReceiveInfoList(receiveInfoList);
-            }
-
-            return member;
+            Integer userId = userDao.getUserIDByUsername(BaseUtils.convertBase(token));
+            return distributorDao.getBasicInfoByID(userId);
         }
    }
 

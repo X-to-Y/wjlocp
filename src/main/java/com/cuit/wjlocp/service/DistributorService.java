@@ -3,6 +3,7 @@ package com.cuit.wjlocp.service;
 
 import com.cuit.wjlocp.entity.AccountInfo;
 import com.cuit.wjlocp.entity.User;
+import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.Member;
 import com.cuit.wjlocp.vo.VUser;
@@ -15,7 +16,7 @@ import java.util.List;
  */
 public interface DistributorService {
     //根据经销商id查询会员信息
-    public Member getMemberInfoByID(String distributorId);
+    public List<Basic> getMemberInfoByID(String token);
 
     //根据经销商id查询账户信息
     public AccountInfo getAccountInfoByID(String distributorId);

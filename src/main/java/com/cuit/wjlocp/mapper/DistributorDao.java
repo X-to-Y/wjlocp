@@ -14,23 +14,24 @@ import java.util.List;
  * Created by chocho on 2021/1/2.
  * 经销商持久化层
  */
-@Mapper
-@Repository
+//@Mapper
+//@Repository
 public interface DistributorDao {
     //根据经销商id查询收货信息
     @Select("select * from " +
             " i_distributorinfo inner join i_memberinfo on i_distributorinfo.memberId = i_memberinfo.id" +
             " left join i_receiveinfo on i_receiveinfo.id =  i_memberinfo.receiveId " +
             " where i_distributorinfo.id = #{distributorId}")
-    public List<ReceiveInfo> getReceiveInfoByID(String distributorId);
+    public List<ReceiveInfo> getReceiveInfoByID(Integer distributorId);
 
     //根据经销商id查询基础信息
     @Select("select i_basicinfo.id, distributorName, distributorNum, distributorSubName, orgName, d_distributortype.name, memo from " +
-            " i_distributorinfo inner join i_memberinfo on i_distributorinfo.memberId = i_memberinfo.id" +
+            " p_usertodistributor left join i_distributorinfo on p_usertodistributor.distributorId = i_distributorinfo.id" +
+            " inner join i_memberinfo on i_distributorinfo.memberId = i_memberinfo.id" +
             " inner join i_basicinfo on i_basicinfo.id =  i_memberinfo.basicId " +
             " left join d_distributortype on d_distributortype.id = i_basicinfo.distributorType" +
-            " where i_distributorinfo.id = #{distributorId}")
-    public Basic getBasicInfoByID(String distributorId);
+            " where p_usertodistributor.userId = #{userId}")
+    public List<Basic> getBasicInfoByID(Integer userId);
 
     //根据经销商id查询账户信息
     @Select("select * from" +
@@ -75,10 +76,13 @@ public interface DistributorDao {
     public int addTopToSub(TopuserToSubuser tts);
 
     //删除经销商
-    //删除用户-用户经销商-经销商
-    @Delete("delete from xx" +
-            " where i_distributorinfo.id = #{id}")
+    @Delete("delete from p_user where p_user.id = #{id};")
     public int deleteByID(String id);
+
+    //删除父子关系
+    @Delete("delete from d_topusertosubuser where d_topusertosubuser.subId = #{id}\n" +
+            " and d_topusertosubuser.topId = #{id}" )
+    public int deleteToptoSub(Integer id);
 
     //启用经销商
     @Update("update p_user\n" +

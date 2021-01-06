@@ -13,8 +13,8 @@ import java.util.List;
  * @author X to Y
  * @date 2020/12/19-13:31
  */
-@Mapper
-@Repository
+//@Mapper
+//@Repository
 public interface IUserDao {
 
     //查询所有用户
@@ -42,4 +42,12 @@ public interface IUserDao {
     //根据用户名获取角色id
     @Select("select actorType from p_user where userName = #{userName}")
     public Integer getActorTypeByUsername(String username);
+
+    //根据用户名获取经销商id
+    @Select("select i_distributorinfo.id from p_user" +
+            " left join p_usertodistributor on p_user.id = p_usertodistributor.userId" +
+            " left join i_distributorinfo on p_usertodistributor.distributorId = i_distributorinfo.id" +
+            " where p_user.userName = #{username};")
+    public Integer getDistributorIDByUsername(String username);
+
 }

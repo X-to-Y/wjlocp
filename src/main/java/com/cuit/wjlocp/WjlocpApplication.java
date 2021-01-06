@@ -8,7 +8,7 @@ import tk.mybatis.spring.annotation.MapperScan;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
-@MapperScan("com.cuit.wjlocp")
+@MapperScan("com.cuit.wjlocp.mapper")
 @EnableScheduling
 @EnableTransactionManagement
 public class WjlocpApplication {
