@@ -8,6 +8,7 @@ import com.cuit.wjlocp.service.IOperationService;
 import com.cuit.wjlocp.vo.UserWithName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -22,12 +23,12 @@ public class IOperationServiceImpl implements IOperationService {
     private IOperationDao iOperationDao;
 
     @Override
-    public List<UserWithName> selectAllOpertaion() {
+    public Page<UserWithName> selectAllOpertaion() {
         return iOperationDao.selectAllOperation();
     }
 
     @Override
-    public List<Actor> selectAllActor() {
+    public Page<Actor>  selectAllActor() {
         return iOperationDao.selectAllActor();
     }
 
@@ -72,12 +73,12 @@ public class IOperationServiceImpl implements IOperationService {
     }
 
     @Override
-    public List<Actor> findActors(Actor actor) {
+    public Page<Actor> findActors(Actor actor) {
         return iOperationDao.findActors(actor);
     }
 
     @Override
-    public List<UserWithName> findOperations(UserWithName userWithName) {
+    public Page<UserWithName> findOperations(UserWithName userWithName) {
         return iOperationDao.findOperations(userWithName);
     }
 
