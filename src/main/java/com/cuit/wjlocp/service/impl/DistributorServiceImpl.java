@@ -124,4 +124,14 @@ public class DistributorServiceImpl implements DistributorService {
         }
         return false;
     }
+
+    @Override
+    public List<ReceiveInfo> getReceiveInfoByID(Integer baseId) {
+        if(baseId == null){
+            return null;
+        }else {
+            //获取收货信息
+            return distributorDao.getReceiveInfoByID(baseId);
+        }
+    }
 }

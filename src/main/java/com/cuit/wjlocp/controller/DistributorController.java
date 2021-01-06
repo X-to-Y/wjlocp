@@ -1,12 +1,12 @@
 package com.cuit.wjlocp.controller;
 
 import com.cuit.wjlocp.entity.AccountInfo;
+import com.cuit.wjlocp.entity.ReceiveInfo;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.service.impl.DistributorServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
-import com.cuit.wjlocp.vo.Member;
 import com.cuit.wjlocp.vo.VUser;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -41,10 +41,18 @@ public class DistributorController {
     }
 
     //根据基础信息id查询收货地址
-//    @GetMapping("/address/by/id")
-//    public Msg getAddressList(@RequestParam String baseId){
-//
-//    }
+    @GetMapping("/address/by/id")
+    public Msg getAddressList(@RequestParam Integer baseId){
+        List<ReceiveInfo> receiveList = distributorService.getReceiveInfoByID(baseId);
+        if(receiveList.size() > 0){
+            return Msg.success()
+                    .add("msg", "查询收货信息成功")
+                    .add("basicInfoList", receiveList);
+        }else {
+            return Msg.fail()
+                    .add("msg", "查询收货信息失败");
+        }
+    }
 
     //根据经销商id查询经销商账户信息
     @GetMapping("/accountinfo/by/id")

@@ -18,11 +18,11 @@ import java.util.List;
 //@Repository
 public interface DistributorDao {
     //根据经销商id查询收货信息
-    @Select("select * from " +
-            " i_distributorinfo inner join i_memberinfo on i_distributorinfo.memberId = i_memberinfo.id" +
-            " left join i_receiveinfo on i_receiveinfo.id =  i_memberinfo.receiveId " +
-            " where i_distributorinfo.id = #{distributorId}")
-    public List<ReceiveInfo> getReceiveInfoByID(Integer distributorId);
+    @Select("select i_receiveinfo.id, receiveOrder, i_receiveinfo.name, tel, receiveAddress, receiveUnit, idCard, i_receiveinfo.memo, isAddress from " +
+            " i_receiveinfo inner join i_memberinfo on i_receiveinfo.id = i_memberinfo.receiveId" +
+            " inner join i_basicinfo on i_memberinfo.basicId = i_basicinfo.id" +
+            " where i_basicinfo.id = #{baseId}")
+    public List<ReceiveInfo> getReceiveInfoByID(Integer baseId);
 
     //根据经销商id查询基础信息
     @Select("select i_basicinfo.id, distributorName, distributorNum, distributorSubName, orgName, d_distributortype.name, memo from " +

@@ -2,6 +2,7 @@ package com.cuit.wjlocp.service;
 
 
 import com.cuit.wjlocp.entity.AccountInfo;
+import com.cuit.wjlocp.entity.ReceiveInfo;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
@@ -38,4 +39,7 @@ public interface DistributorService {
 
     //禁用经销商
     public boolean disableDistributor(Integer id);
+
+    //根据基础信息id获取收货信息
+    public List<ReceiveInfo> getReceiveInfoByID(Integer baseId);
 }
