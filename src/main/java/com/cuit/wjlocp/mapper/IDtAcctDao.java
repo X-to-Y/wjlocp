@@ -5,7 +5,6 @@ import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
 
 /**
  * @author X to Y
@@ -56,7 +55,7 @@ public interface IDtAcctDao {
 
     //新增经销商账号
     @Insert("insert into p_user(userName,dtName,name,tel,mail,memo,createPerson,modifyPerson,createTime,modifyTime)\n" +
-            "values(#{userName},#{#dtName},#{name},#{tel},#{mail},#{memo},#{createPerson},#{modifyPerson},#{createTime},#{modifyTime})")
+            "values(#{userName},#{dtName},#{name},#{tel},#{mail},#{memo},#{createPerson},#{modifyPerson},#{createTime},#{modifyTime})")
     int addDt(User user);
 
     //修改经销商账号

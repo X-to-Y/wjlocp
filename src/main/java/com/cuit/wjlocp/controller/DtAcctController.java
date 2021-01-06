@@ -134,7 +134,6 @@ public class DtAcctController {
 
     /***
      * 新增经销商账号
-     * 未完成
      * @param user
      * @return
      */
@@ -155,6 +154,12 @@ public class DtAcctController {
         }
     }
 
+    /***
+     * 修改经销商账号信息
+     * @param user
+     * @param request
+     * @return
+     */
     @PostMapping("modifyDt")
     public Msg modifyDt(@RequestBody User user,
                         HttpServletRequest request){
