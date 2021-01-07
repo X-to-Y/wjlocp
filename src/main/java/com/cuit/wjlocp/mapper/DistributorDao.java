@@ -6,6 +6,7 @@ import com.cuit.wjlocp.entity.TopuserToSubuser;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.VUser;
+import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
 import java.util.List;
@@ -73,7 +74,7 @@ public interface DistributorDao {
             "  and p_user.sex like concat(\"%\", #{sex}, \"%\")</if> " +
             " </where>" +
             "</script>")
-    public List<VUser> getUserInfoByLike(DistributorQuery query);
+    public Page<VUser> getUserInfoByLike(DistributorQuery query);
 
     //新增父子经销商关系
     @Insert("insert into d_topusertosubuser (id, topId, subId, createTime)" +

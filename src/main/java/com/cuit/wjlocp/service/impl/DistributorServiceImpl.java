@@ -9,6 +9,7 @@ import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.Member;
 import com.cuit.wjlocp.vo.VUser;
+import com.github.pagehelper.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -67,7 +68,7 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     @Transactional
-    public List<VUser> getUserInfoByLike(DistributorQuery query) {
+    public Page<VUser> getUserInfoByLike(DistributorQuery query) {
         return distributorDao.getUserInfoByLike(query);
     }
 
@@ -75,17 +76,17 @@ public class DistributorServiceImpl implements DistributorService {
     @Transactional
     public boolean addSubUserInfo(String token, User user) {
         if(user != null){
-            //设置默认密码123
+            //设置默认密码12345
             user.setPassWord("12345");
             //启用状态
             user.setIsFreeze(0);
             //创建人名字
-            user.setCreatePerson("admin");
+            String username = BaseUtils.convertBase(token);
+            user.setCreatePerson(userDao.getUserByUsername(username).getName());
             //创建时间
             user.setCreateTime(new Date());
             userDao.addUserInfo(user);
             //获取父用户Id
-            String username = BaseUtils.convertBase(token);
             Integer topId = userDao.getUserIDByUsername(username);
             Integer subId = userDao.getUserIDByUsername(user.getUserName());
             if(topId.byteValue() != 0 && subId.byteValue() != 0) {

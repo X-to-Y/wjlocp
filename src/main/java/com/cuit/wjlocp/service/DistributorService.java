@@ -8,6 +8,7 @@ import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.Member;
 import com.cuit.wjlocp.vo.VUser;
+import com.github.pagehelper.Page;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ public interface DistributorService {
     public List<VUser> getUserInfoByTopID(String topId);
 
     //模糊查询用户信息
-    public List<VUser> getUserInfoByLike(DistributorQuery query);
+    public Page<VUser> getUserInfoByLike(DistributorQuery query);
 
     //新增子经销商信息
     public boolean addSubUserInfo(String token, User user);

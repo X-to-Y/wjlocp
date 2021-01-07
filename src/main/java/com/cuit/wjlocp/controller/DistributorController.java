@@ -7,7 +7,10 @@ import com.cuit.wjlocp.service.impl.DistributorServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
 import com.cuit.wjlocp.vo.Basic;
 import com.cuit.wjlocp.vo.DistributorQuery;
+import com.cuit.wjlocp.vo.UserWithName;
 import com.cuit.wjlocp.vo.VUser;
+import com.github.pagehelper.Page;
+import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -85,22 +88,42 @@ public class DistributorController {
 
     //模糊查询子经销商用户信息
     @PostMapping("/like/sub/user")
-    public Msg getUserInfoByLike(@RequestBody DistributorQuery query){
-        List<VUser> userList = distributorService.getUserInfoByLike(query);
-        if(userList.size() > 0){
+    public Msg getUserInfoByLike(HttpServletRequest request,
+                                 @RequestBody DistributorQuery query){
+        String pageParam = request.getHeader("pageParam");
+        String limitParam = request.getHeader("limitParam");
+        if ( pageParam.equals("1") && limitParam.equals("99999")){
+            List<VUser> userList = distributorService.getUserInfoByLike(query);
             return Msg.success()
-                    .add("msg", "模糊查询用户成功")
-                    .add("data", userList);
-        }else {
-            return Msg.fail()
-                    .add("msg", "模糊查询用户失败");
+                    .add("msg","查询成功")
+                    .add("data",userList);
+        }
+        else{
+            //当前页数
+            int page = !pageParam.equals("") ? Integer.parseInt(pageParam) : 1;
+            //每页条数
+            int limit = !limitParam.equals("") ? Integer.parseInt(limitParam) : 10;
+            //分页
+            PageHelper.startPage(page, limit);
+            Page<VUser> userList = distributorService.getUserInfoByLike(query);
+            if(userList.size() > 0){
+                return Msg.success()
+                        .add("msg",  "模糊查询用户成功！")
+                        .add("data",userList)
+                        .add("page",pageParam)
+                        .add("totalPage",(userList.getTotal()/(Integer.parseInt(limitParam)))+1);
+            }else {
+                return Msg.fail()
+                        .add("msg", "模糊查询用户失败");
+            }
         }
     }
 
     //新增子经销商用户信息
     @PostMapping("/new/user")
-    public Msg addSubUserInfo(@RequestParam String token,
+    public Msg addSubUserInfo(HttpServletRequest request,
                               @RequestBody User user){
+        String token = request.getHeader("token");
         if(distributorService.addSubUserInfo(token, user)){
             return Msg.success()
                     .add("msg", "新增子经销商成功");
