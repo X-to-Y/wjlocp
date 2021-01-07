@@ -110,7 +110,7 @@ public class DistributorController {
                 return Msg.success()
                         .add("msg",  "模糊查询用户成功！")
                         .add("data",userList)
-                        .add("page",pageParam)
+                        .add("page",Integer.parseInt(pageParam))
                         .add("totalPage",((userList.getTotal()-1)/(Integer.parseInt(limitParam)))+1);
             }else {
                 return Msg.fail()
