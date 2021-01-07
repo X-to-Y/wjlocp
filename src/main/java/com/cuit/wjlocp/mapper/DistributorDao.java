@@ -60,17 +60,17 @@ public interface DistributorDao {
             " left join a_org on p_user.orgType = a_org.id" +
             " left join a_actor on p_user.actorType = a_actor.id" +
             " <where> b.topId = #{topId}" +
-            " <if test=\" query.userName !=null  \" >" +
+            " <if test=\" query.userName !=\'\'  \" >" +
             "  and p_user.userName like concat(\"%\", #{query.userName}, \"%\")</if> " +
-            " <if test=\" query.isFreeze !=null  \" >" +
+            " <if test=\" query.isFreeze !=\'\'  \" >" +
             "  and p_user.isFreeze like concat(\"%\", #{query.isFreeze}, \"%\")</if> " +
-            " <if test=\" query.actorType !=null  \" >" +
+            " <if test=\" query.actorType !=\'\'  \" >" +
             "  and p_user.actorType like concat(\"%\", #{query.actorType}, \"%\")</if> " +
-            " <if test=\" query.name !=null  \" >" +
+            " <if test=\" query.name !=\'\'  \" >" +
             "  and p_user.name like concat(\"%\", #{query.name}, \"%\")</if> " +
-            " <if test=\" query.tel !=null  \" >" +
+            " <if test=\" query.tel !=\'\'  \" >" +
             "  and p_user.tel like concat(\"%\", #{query.tel}, \"%\")</if> " +
-            " <if test=\" query.sex !=null  \" >" +
+            " <if test=\" query.sex !=\'\'  \" >" +
             "  and p_user.sex like concat(\"%\", #{query.sex}, \"%\")</if> " +
             " </where>" +
             "</script>")

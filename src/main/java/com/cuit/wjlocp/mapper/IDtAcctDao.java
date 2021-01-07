@@ -32,12 +32,12 @@ public interface IDtAcctDao {
             "select *" +
             "from p_user" +
             "<where>" +
-            "and actorType = 2 or actorType = 3 " +
+            "and (actorType = 2 or actorType = 3) " +
             "<if test=\"dtName != \'\'\">" +
-            "and actorName like CONCAT('%',#{dtName},'%')" +
+            "and dtName like CONCAT('%',#{dtName},'%')" +
             "</if>" +
             "<if test=\"userName != \'\'\">" +
-            "and actorName like CONCAT('%',#{userName},'%')" +
+            "and userName like CONCAT('%',#{userName},'%')" +
             "</if>" +
             "<if test='isFreeze != -1'>" +
             "and isFreeze like CONCAT('%',#{isFreeze},'%')" +

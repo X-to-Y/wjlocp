@@ -67,6 +67,7 @@ public class DtAcctController {
                       HttpServletRequest request){
         String pageParam = request.getHeader("pageParam");
         String limitParam = request.getHeader("limitParam");
+        System.out.println(limitParam);
         if ( pageParam.equals("1") && limitParam.equals("99999")){
             List<User> usersList = iDtAcctServiceImpl.findDt(user);
             return Msg.success()
@@ -181,7 +182,7 @@ public class DtAcctController {
      * @param id
      * @return
      */
-    @PostMapping("deleteDt")
+    @GetMapping("deleteDt")
     public Msg deleteDt(@RequestParam Integer id){
 
         if(id != 0){
