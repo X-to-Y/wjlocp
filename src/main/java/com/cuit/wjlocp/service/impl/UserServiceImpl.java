@@ -36,6 +36,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public List<Permission> getPermissionByToken(String token) {
         String username = BaseUtils.convertBase(token);
         Integer actorType = userDao.getActorTypeByUsername(username);
@@ -44,5 +45,13 @@ public class UserServiceImpl implements UserService {
         }else {//经销商
             return userDao.getPermissionByActorId(2);
         }
+    }
+
+    @Override
+    @Transactional
+    public boolean updatePassword(String token, String newPassWord) {
+        String username = BaseUtils.convertBase(token);
+        Integer userId = userDao.getUserIDByUsername(username);
+        return userDao.updatePassword(userId, newPassWord) > 0;
     }
 }

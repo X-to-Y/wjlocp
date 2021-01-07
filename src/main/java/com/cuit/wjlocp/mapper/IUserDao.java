@@ -5,6 +5,7 @@ import com.cuit.wjlocp.entity.User;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -49,5 +50,9 @@ public interface IUserDao {
             " left join i_distributorinfo on p_usertodistributor.distributorId = i_distributorinfo.id" +
             " where p_user.userName = #{username};")
     public List<Integer> getDistributorIDByUsername(String username);
+
+    //修改密码
+    @Update("update p_user set passWord = #{newPassword} where id = #{userId};")
+    public int updatePassword(Integer userId, String newPassword);
 
 }

@@ -74,4 +74,18 @@ public class LoginController {
                     .add("msg", "菜单获取失败");
         }
     }
+
+    //修改密码
+    @GetMapping("/update/password")
+    public Msg updatePassword(HttpServletRequest request,
+                              @RequestParam String newPassWord){
+        String token = request.getHeader("token");
+        if(userService.updatePassword(token, newPassWord)){
+            return Msg.success()
+                    .add("msg", "修改密码成功");
+        }else {
+            return Msg.success()
+                    .add("msg", "修改密码失败");
+        }
+    }
 }

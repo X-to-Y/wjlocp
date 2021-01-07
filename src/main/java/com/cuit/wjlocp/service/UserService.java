@@ -23,4 +23,7 @@ public interface UserService {
 
     //根据token获取角色id
     public List<Permission> getPermissionByToken(String token);
+
+    //修改密码
+    public boolean updatePassword(String token, String newPassWord);
 }
