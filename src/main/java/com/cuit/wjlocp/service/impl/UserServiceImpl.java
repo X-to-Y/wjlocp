@@ -5,11 +5,13 @@ import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.mapper.IUserDao;
 import com.cuit.wjlocp.service.UserService;
 import com.cuit.wjlocp.utils.BaseUtils;
+import com.cuit.wjlocp.utils.CacheMapUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by chocho on 2020/12/31.

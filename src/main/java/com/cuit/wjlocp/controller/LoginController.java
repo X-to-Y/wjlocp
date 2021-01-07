@@ -5,6 +5,7 @@ import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.service.UserService;
 import com.cuit.wjlocp.service.impl.UserServiceImpl;
 import com.cuit.wjlocp.utils.BaseUtils;
+import com.cuit.wjlocp.utils.CacheMapUtil;
 import com.cuit.wjlocp.utils.Msg;
 import com.cuit.wjlocp.utils.ResponseUtil;
 import com.cuit.wjlocp.vo.LoginInfo;
@@ -36,10 +37,14 @@ public class LoginController {
         User user = userService.getUserByUsername(loginInfo.getUserName());
 
         if (user != null && user.getPassWord() != null && user.getPassWord().equals(loginInfo.getPassWord())) {
+            //将token信息存入缓存
+            Map<String, String> map = CacheMapUtil.getInstance();
+            String token = BaseUtils.baseEncode(user.getUserName());
+            map.put(token, user.getUserName());
             return Msg.success()
                     .add("msg", "登录成功")
                     //token 是由用户名加密后所得
-                    .add("token", BaseUtils.baseEncode(user.getUserName()))
+                    .add("token", token)
                     .add("userName", user.getUserName());
         }else {
             return Msg.fail()
@@ -86,6 +91,24 @@ public class LoginController {
         }else {
             return Msg.success()
                     .add("msg", "修改密码失败");
+        }
+    }
+
+    /**
+     * 注销登录
+     * @param request
+     * @return
+     */
+    @GetMapping("/logout")
+    public Msg logOut(HttpServletRequest request){
+        Map<String, String> map = CacheMapUtil.getInstance();
+        String token = request.getHeader("token");
+        map.remove(token);
+
+        if (map.get(token) == null || "".equals(map.get(token))) {
+            return Msg.success().add("msg","成功登出");
+        }else {
+            return Msg.fail().add("msg","登出失败");
         }
     }
 }
