@@ -43,4 +43,7 @@ public interface DistributorService {
 
     //根据基础信息id获取收货信息
     public List<ReceiveInfo> getReceiveInfoByID(Integer baseId);
+
+    //更新经销商
+    public boolean updateDistributor(User user);
 }

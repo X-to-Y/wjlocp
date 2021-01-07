@@ -138,4 +138,15 @@ public class DistributorServiceImpl implements DistributorService {
             return distributorDao.getReceiveInfoByID(baseId);
         }
     }
+
+    @Override
+    public boolean updateDistributor(User user) {
+        if(user != null){
+            //修改时间
+            user.setModifyTime(new Date());
+            return userDao.updateUser(user) > 0;
+        }
+
+        return false;
+    }
 }

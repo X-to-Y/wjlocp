@@ -55,4 +55,15 @@ public interface IUserDao {
     @Update("update p_user set passWord = #{newPassword} where id = #{userId};")
     public int updatePassword(Integer userId, String newPassword);
 
+    //更新用户信息
+    @Update("update p_user " +
+            " set userName = #{userName}," +
+            " name = #{name}," +
+            " actorType = #{actorType}," +
+            " sex = #{sex}," +
+            " tel = #{tel}," +
+            " mail = #{mail}," +
+            " memo = #{memo}" +
+            " where id = #{id};")
+    public int updateUser(User user);
 }

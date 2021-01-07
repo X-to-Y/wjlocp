@@ -133,7 +133,17 @@ public class DistributorController {
         }
     }
 
-    //分配子经销商权限接口
+    //修改经销商信息
+    @PostMapping("/update")
+    public Msg updateDistributor(@RequestBody User user){
+        if(distributorService.updateDistributor(user)){
+            return Msg.success()
+                    .add("msg", "修改经销商信息成功");
+        }else{
+            return Msg.fail()
+                    .add("msg", "修改经销商信息失败");
+        }
+    }
 
 
     //删除子经销商
