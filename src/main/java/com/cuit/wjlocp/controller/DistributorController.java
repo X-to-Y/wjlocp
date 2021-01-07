@@ -56,8 +56,9 @@ public class DistributorController {
 
     //根据经销商id查询经销商账户信息
     @GetMapping("/accountinfo/by/id")
-    public Msg getAccountInfoByID(@RequestParam String distributorId){
-        AccountInfo account = distributorService.getAccountInfoByID(distributorId);
+    public Msg getAccountInfoByID(HttpServletRequest request){
+        String token = request.getHeader("token");
+        List<AccountInfo> account = distributorService.getAccountInfoByToken(token);
         if(account != null){
             return Msg.success()
                     .add("msg", "查询账户信息成功")

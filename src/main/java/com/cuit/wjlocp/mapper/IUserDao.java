@@ -48,6 +48,6 @@ public interface IUserDao {
             " left join p_usertodistributor on p_user.id = p_usertodistributor.userId" +
             " left join i_distributorinfo on p_usertodistributor.distributorId = i_distributorinfo.id" +
             " where p_user.userName = #{username};")
-    public Integer getDistributorIDByUsername(String username);
+    public List<Integer> getDistributorIDByUsername(String username);
 
 }

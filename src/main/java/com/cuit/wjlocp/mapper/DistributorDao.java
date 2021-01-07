@@ -34,10 +34,15 @@ public interface DistributorDao {
     public List<Basic> getBasicInfoByID(Integer userId);
 
     //根据经销商id查询账户信息
-    @Select("select * from" +
+    @Select("<script>" +
+            "select * from" +
             " i_distributorinfo inner join i_accountinfo on i_distributorinfo.accountId = i_accountinfo.id" +
-            " where i_distributorinfo.id = #{distributorId}")
-    public AccountInfo getAccountInfo(String distributorId);
+            " where i_distributorinfo.id in" +
+            " <foreach item=\"item\" collection=\"list\" separator=\",\" open=\"(\" close=\")\" index=\"\">" +
+            "  #{item, jdbcType=CHAR}" +
+            " </foreach>" +
+            "</script>")
+    public List<AccountInfo> getAccountInfo(List<Integer> distributorIds);
 
     //根据父经销商id获取子经销商用户信息
     @Select("select p2.id, p2.userName, p2.passWord, p2.name, p2.sex, p2.memo, a_actor.actorName, a_org.orgName, p2.mail, p2.tel, p2.isFreeze, p2.dtName, p2.createPerson, p2.createTime, p2.modifyPerson, p2.modifyTime from " +

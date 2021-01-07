@@ -43,9 +43,11 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     @Transactional
-    public AccountInfo getAccountInfoByID(String distributorId) {
-        if(distributorId != null && !"".equals(distributorId)) {
-            AccountInfo account = distributorDao.getAccountInfo(distributorId);
+    public List<AccountInfo> getAccountInfoByToken(String token) {
+        String username = BaseUtils.convertBase(token);
+        List<Integer> distributorIds = userDao.getDistributorIDByUsername(username);
+        if(distributorIds.size() > 0) {
+            List<AccountInfo> account = distributorDao.getAccountInfo(distributorIds);
             if(account != null){
                 return account;
             }
