@@ -56,7 +56,7 @@ public interface DistributorDao {
 
     //模糊查询用户信息
     @Select("<script>" +
-            "select p_user.id, userName, passWord, name, sex, p_user.memo, a_actor.actorName, a_org.orgName, mail, tel, p_user.isFreeze, dtName, createPerson, createTime, modifyPerson, modifyTime from " +
+            "select p_user.id, userName, passWord, actorType, name, sex, p_user.memo, a_actor.actorName, a_org.orgName, mail, tel, p_user.isFreeze, dtName, createPerson, createTime, modifyPerson, modifyTime from " +
             " p_user left join a_org on p_user.orgType = a_org.id" +
             " left join a_actor on p_user.actorType = a_actor.id" +
             " <where>" +

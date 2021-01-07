@@ -111,7 +111,7 @@ public class DistributorController {
                         .add("msg",  "模糊查询用户成功！")
                         .add("data",userList)
                         .add("page",pageParam)
-                        .add("totalPage",(userList.getTotal()/(Integer.parseInt(limitParam)))+1);
+                        .add("totalPage",((userList.getTotal()-1)/(Integer.parseInt(limitParam)))+1);
             }else {
                 return Msg.fail()
                         .add("msg", "模糊查询用户失败");
