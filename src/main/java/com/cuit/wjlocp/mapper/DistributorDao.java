@@ -55,24 +55,23 @@ public interface DistributorDao {
 
     //模糊查询用户信息
     @Select("<script>" +
-            "select p_user.id, userName, passWord, actorType, name, sex, p_user.memo, a_actor.actorName, a_org.orgName, mail, tel, p_user.isFreeze, dtName, createPerson, createTime, modifyPerson, modifyTime from " +
-            " d_topusertosubuser inner join p_user on d_topusertosubuser.topId = p_user.id" +
-            " inner join d_topusertosubuser on p_user.id = d_topusertosubuser.subId" +
+            "select p_user.id, userName, passWord, actorType, name, sex, p_user.memo, a_actor.actorName, a_org.orgName, mail, tel, p_user.isFreeze, dtName, createPerson, p_user.createTime, modifyPerson, modifyTime from " +
+            " d_topusertosubuser b inner join p_user on p_user.id = b.subId" +
             " left join a_org on p_user.orgType = a_org.id" +
             " left join a_actor on p_user.actorType = a_actor.id" +
-            " <where> d_topusertosubuser.topId = #{topId}" +
+            " <where> b.topId = #{topId}" +
             " <if test=\" query.userName !=null  \" >" +
             "  and p_user.userName like concat(\"%\", #{query.userName}, \"%\")</if> " +
-            " <if test=\" isFreeze !=null  \" >" +
-            "  and p_user.isFreeze like concat(\"%\", #{isFreeze}, \"%\")</if> " +
-            " <if test=\" actorType !=null  \" >" +
-            "  and p_user.actorType like concat(\"%\", #{actorType}, \"%\")</if> " +
-            " <if test=\" name !=null  \" >" +
-            "  and p_user.name like concat(\"%\", #{name}, \"%\")</if> " +
-            " <if test=\" tel !=null  \" >" +
-            "  and p_user.tel like concat(\"%\", #{tel}, \"%\")</if> " +
-            " <if test=\" sex !=null  \" >" +
-            "  and p_user.sex like concat(\"%\", #{sex}, \"%\")</if> " +
+            " <if test=\" query.isFreeze !=null  \" >" +
+            "  and p_user.isFreeze like concat(\"%\", #{query.isFreeze}, \"%\")</if> " +
+            " <if test=\" query.actorType !=null  \" >" +
+            "  and p_user.actorType like concat(\"%\", #{query.actorType}, \"%\")</if> " +
+            " <if test=\" query.name !=null  \" >" +
+            "  and p_user.name like concat(\"%\", #{query.name}, \"%\")</if> " +
+            " <if test=\" query.tel !=null  \" >" +
+            "  and p_user.tel like concat(\"%\", #{query.tel}, \"%\")</if> " +
+            " <if test=\" query.sex !=null  \" >" +
+            "  and p_user.sex like concat(\"%\", #{query.sex}, \"%\")</if> " +
             " </where>" +
             "</script>")
     public Page<VUser> getUserInfoByLike(Integer topId, DistributorQuery query);
