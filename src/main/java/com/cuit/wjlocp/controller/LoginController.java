@@ -83,15 +83,26 @@ public class LoginController {
     //修改密码
     @GetMapping("/update/password")
     public Msg updatePassword(HttpServletRequest request,
+                              @RequestParam String oldPassWord,
                               @RequestParam String newPassWord){
         String token = request.getHeader("token");
-        if(userService.updatePassword(token, newPassWord)){
-            return Msg.success()
-                    .add("msg", "修改密码成功");
-        }else {
-            return Msg.success()
-                    .add("msg", "修改密码失败");
+        //用户校验
+        User user = userService.getUserByUsername(BaseUtils.convertBase(token));
+        if(user != null){
+            if(!user.getPassWord().equals(oldPassWord)){
+                return Msg.fail()
+                        .add("msg", "旧密码输入错误");
+            }else {
+                if (userService.updatePassword(token, newPassWord)) {
+                    return Msg.success()
+                            .add("msg", "修改密码成功");
+                } else {
+                    return Msg.success()
+                            .add("msg", "修改密码失败");
+                }
+            }
         }
+        return null;
     }
 
     /**

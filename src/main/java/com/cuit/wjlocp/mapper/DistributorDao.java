@@ -56,11 +56,13 @@ public interface DistributorDao {
     //模糊查询用户信息
     @Select("<script>" +
             "select p_user.id, userName, passWord, actorType, name, sex, p_user.memo, a_actor.actorName, a_org.orgName, mail, tel, p_user.isFreeze, dtName, createPerson, createTime, modifyPerson, modifyTime from " +
-            " p_user left join a_org on p_user.orgType = a_org.id" +
+            " d_topusertosubuser inner join p_user on d_topusertosubuser.topId = p_user.id" +
+            " inner join d_topusertosubuser on p_user.id = d_topusertosubuser.subId" +
+            " left join a_org on p_user.orgType = a_org.id" +
             " left join a_actor on p_user.actorType = a_actor.id" +
-            " <where>" +
-            " <if test=\" userName !=null  \" >" +
-            "  and p_user.userName like concat(\"%\", #{userName}, \"%\")</if> " +
+            " <where> d_topusertosubuser.topId = #{topId}" +
+            " <if test=\" query.userName !=null  \" >" +
+            "  and p_user.userName like concat(\"%\", #{query.userName}, \"%\")</if> " +
             " <if test=\" isFreeze !=null  \" >" +
             "  and p_user.isFreeze like concat(\"%\", #{isFreeze}, \"%\")</if> " +
             " <if test=\" actorType !=null  \" >" +
@@ -73,7 +75,7 @@ public interface DistributorDao {
             "  and p_user.sex like concat(\"%\", #{sex}, \"%\")</if> " +
             " </where>" +
             "</script>")
-    public Page<VUser> getUserInfoByLike(DistributorQuery query);
+    public Page<VUser> getUserInfoByLike(Integer topId, DistributorQuery query);
 
     //新增父子经销商关系
     @Insert("insert into d_topusertosubuser (id, topId, subId, createTime)" +

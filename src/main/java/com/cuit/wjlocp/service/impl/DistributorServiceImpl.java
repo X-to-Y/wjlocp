@@ -69,8 +69,10 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     @Transactional
-    public Page<VUser> getUserInfoByLike(DistributorQuery query) {
-        return distributorDao.getUserInfoByLike(query);
+    public Page<VUser> getUserInfoByLike(String token, DistributorQuery query) {
+        String username = BaseUtils.convertBase(token);
+        Integer topId = userDao.getUserIDByUsername(username);
+        return distributorDao.getUserInfoByLike(topId, query);
     }
 
     @Override
@@ -86,6 +88,8 @@ public class DistributorServiceImpl implements DistributorService {
             user.setCreatePerson(userDao.getUserByUsername(username).getName());
             //创建时间
             user.setCreateTime(new Date());
+            //角色id-子经销商
+            user.setActorType(3);
             userDao.addUserInfo(user);
             //获取父用户Id
             Integer topId = userDao.getUserIDByUsername(username);

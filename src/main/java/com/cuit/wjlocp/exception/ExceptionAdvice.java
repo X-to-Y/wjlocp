@@ -20,11 +20,11 @@ import org.springframework.web.servlet.NoHandlerFoundException;
 @RestControllerAdvice
 public class ExceptionAdvice {
 
-    @ResponseBody
-    @ExceptionHandler({Exception.class, NullPointerException.class})
-    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-    public Msg ServerError(){
-        return Msg.fail().add("msg", "系统出错，请联系管理员");
-    }
+//    @ResponseBody
+//    @ExceptionHandler({Exception.class, NullPointerException.class})
+//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+//    public Msg ServerError(){
+//        return Msg.fail().add("msg", "系统出错，请联系管理员");
+//    }
 
 }

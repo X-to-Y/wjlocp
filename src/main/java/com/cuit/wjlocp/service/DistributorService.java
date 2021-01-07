@@ -27,7 +27,7 @@ public interface DistributorService {
     public List<VUser> getUserInfoByTopID(String topId);
 
     //模糊查询用户信息
-    public Page<VUser> getUserInfoByLike(DistributorQuery query);
+    public Page<VUser> getUserInfoByLike(String token, DistributorQuery query);
 
     //新增子经销商信息
     public boolean addSubUserInfo(String token, User user);

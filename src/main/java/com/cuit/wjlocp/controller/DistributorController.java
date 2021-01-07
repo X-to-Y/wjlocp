@@ -90,10 +90,13 @@ public class DistributorController {
     @PostMapping("/like/sub/user")
     public Msg getUserInfoByLike(HttpServletRequest request,
                                  @RequestBody DistributorQuery query){
+        String token = request.getHeader("token");
         String pageParam = request.getHeader("pageParam");
         String limitParam = request.getHeader("limitParam");
+
+        System.out.println(query);
         if ( pageParam.equals("1") && limitParam.equals("99999")){
-            List<VUser> userList = distributorService.getUserInfoByLike(query);
+            List<VUser> userList = distributorService.getUserInfoByLike(token, query);
             return Msg.success()
                     .add("msg","查询成功")
                     .add("data",userList);
@@ -105,7 +108,7 @@ public class DistributorController {
             int limit = !limitParam.equals("") ? Integer.parseInt(limitParam) : 10;
             //分页
             PageHelper.startPage(page, limit);
-            Page<VUser> userList = distributorService.getUserInfoByLike(query);
+            Page<VUser> userList = distributorService.getUserInfoByLike(token, query);
             if(userList.size() > 0){
                 return Msg.success()
                         .add("msg",  "模糊查询用户成功！")

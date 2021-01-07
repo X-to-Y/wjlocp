@@ -37,7 +37,7 @@ public interface IUserDao {
     public int addUserInfo(User user);
 
     //根据用户名获取用户Id
-    @Select("select id from p_user where userName = #{username};")
+    @Select("select id from p_user where userName = #{username}")
     public Integer getUserIDByUsername(String username);
 
     //根据用户名获取角色id
