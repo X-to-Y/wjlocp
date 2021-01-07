@@ -64,8 +64,8 @@ public interface DistributorDao {
             "  and p_user.userName like concat(\"%\", #{userName}, \"%\")</if> " +
             " <if test=\" isFreeze !=null  \" >" +
             "  and p_user.isFreeze like concat(\"%\", #{isFreeze}, \"%\")</if> " +
-            " <if test=\" actorName !=null  \" >" +
-            "  and a_actor.actorName like concat(\"%\", #{actorName}, \"%\")</if> " +
+            " <if test=\" actorType !=null  \" >" +
+            "  and p_user.actorType like concat(\"%\", #{actorType}, \"%\")</if> " +
             " <if test=\" name !=null  \" >" +
             "  and p_user.name like concat(\"%\", #{name}, \"%\")</if> " +
             " <if test=\" tel !=null  \" >" +

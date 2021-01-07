@@ -12,7 +12,7 @@ public class DistributorQuery {
     //状态
     private String isFreeze;
     //角色
-    private String actorName;
+    private String actorType;
     //真实姓名
     private String name;
     //手机号码
@@ -36,12 +36,12 @@ public class DistributorQuery {
         this.isFreeze = isFreeze;
     }
 
-    public String getActorName() {
-        return actorName;
+    public String getActorType() {
+        return actorType;
     }
 
-    public void setActorName(String actorName) {
-        this.actorName = actorName;
+    public void setActorType(String actorType) {
+        this.actorType = actorType;
     }
 
     public String getName() {
