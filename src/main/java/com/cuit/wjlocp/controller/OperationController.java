@@ -1,8 +1,6 @@
 package com.cuit.wjlocp.controller;
 
-import com.cuit.wjlocp.entity.Actor;
-import com.cuit.wjlocp.entity.Org;
-import com.cuit.wjlocp.entity.User;
+import com.cuit.wjlocp.entity.*;
 import com.cuit.wjlocp.service.impl.IOperationServiceImpl;
 import com.cuit.wjlocp.utils.Msg;
 import com.cuit.wjlocp.vo.UserWithName;
@@ -57,8 +55,8 @@ public class OperationController {
             return Msg.success()
                     .add("msg",  "查询成功！")
                     .add("data",usersList)
-                    .add("page",pageParam)
-                    .add("totalPage",(usersList.getTotal()/(Integer.parseInt(limitParam)))+1);
+                    .add("page",Integer.parseInt(pageParam))
+                    .add("totalPage",((usersList.getTotal() - 1)/(Integer.parseInt(limitParam)))+1);
         }
     }
 
@@ -88,8 +86,8 @@ public class OperationController {
             return Msg.success()
                     .add("msg",  "查询成功！")
                     .add("data",actorsList)
-                    .add("page",pageParam)
-                    .add("totalPage",(actorsList.getTotal()/(Integer.parseInt(limitParam)))+1);
+                    .add("page",Integer.parseInt(pageParam))
+                    .add("totalPage",((actorsList.getTotal() - 1)/(Integer.parseInt(limitParam)))+1);
 
         }
     }
@@ -268,8 +266,8 @@ public class OperationController {
             return Msg.success()
                     .add("msg",  "查询成功！")
                     .add("data",actorsList)
-                    .add("page",pageParam)
-                    .add("totalPage",(actorsList.getTotal()/(Integer.parseInt(limitParam)))+1);
+                    .add("page",Integer.parseInt(pageParam))
+                    .add("totalPage",((actorsList.getTotal() - 1)/(Integer.parseInt(limitParam)))+1);
         }
     }
 
@@ -300,8 +298,8 @@ public class OperationController {
             return Msg.success()
                     .add("msg",  "查询成功！")
                     .add("data",awnList)
-                    .add("page",pageParam)
-                    .add("totalPage",(awnList.getTotal()/(Integer.parseInt(limitParam)))+1);
+                    .add("page",Integer.parseInt(pageParam))
+                    .add("totalPage",((awnList.getTotal() - 1)/(Integer.parseInt(limitParam)))+1);
         }
     }
 
@@ -380,4 +378,6 @@ public class OperationController {
             return Msg.fail().add("msg","参数有误！");
         }
     }
+
+
 }

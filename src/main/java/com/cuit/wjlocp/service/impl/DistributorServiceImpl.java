@@ -37,6 +37,7 @@ public class DistributorServiceImpl implements DistributorService {
         }else {
             Basic basic = new Basic();
             //获取基础信息
+            System.out.println(BaseUtils.convertBase(token));
             Integer userId = userDao.getUserIDByUsername(BaseUtils.convertBase(token));
             return distributorDao.getBasicInfoByID(userId);
         }

@@ -1,9 +1,14 @@
 package com.cuit.wjlocp.mapper;
 
+import com.cuit.wjlocp.entity.BasicInfo;
+import com.cuit.wjlocp.entity.DistributorType;
 import com.cuit.wjlocp.entity.User;
+import com.cuit.wjlocp.vo.Basic;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.*;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 
 /**
@@ -76,4 +81,52 @@ public interface IDtAcctDao {
             "set passWord = '12345'" +
             "where id = #{id}")
     int resetPassword(Integer id);
+
+    //经销商类别下拉菜单
+    @Select("select *\n" +
+            "from d_distributortype")
+    List<DistributorType> selectAllDT();
+
+    //经销商列表条件查询
+    @Select("<script>" +
+            "select *" +
+            "from i_basicinfo b left join d_distributortype d on b.distributorType = d.id" +
+            "<where>" +
+            "<if test=\"distributorName != \'\'\">" +
+            "and distributorName like CONCAT('%',#{distributorName},'%')" +
+            "</if>" +
+            "<if test='distributorType != -1'>" +
+            "and distributorType like CONCAT('%',#{distributorType},'%')" +
+            "</if>" +
+            "<if test=\"distributorNum != \'\'\">" +
+            "and distributorNum like CONCAT('%',#{distributorNum},'%')" +
+            "</if>" +
+            "</where>" +
+            "</script>")
+    Page<Basic> findDtList(BasicInfo basicInfo);
+
+    //通过basicid查找distributorId
+    @Select("select i_distributorinfo.id from i_basicinfo\n" +
+            "inner join i_memberinfo on i_basicinfo.id = i_memberinfo.basicId\n" +
+            "inner join i_distributorinfo on i_memberinfo.id = i_distributorinfo.memberId\n" +
+            "where i_basicinfo.id = #{basicId};")
+    Integer findBasicIdByDtId(Integer basicId);
+
+    //关联经销商账号和经销商
+    @Insert("insert into p_usertodistributor (distributorId, userId)\n" +
+            "values(#{distributorId}, #{userId});")
+    Integer relateDtAndAccount(Integer distributorId, Integer userId);
+
+    //解除关联经销商账号和经销商
+    @Delete("delete from p_usertodistributor " +
+            "where distributorId = #{distributorId} and userId = #{userId};")
+    Integer removeRelate(Integer distributorId, Integer userId);
+
+    //判断是否已经关联
+    @Select("select count(*) " +
+            "from `p_usertodistributor`\n" +
+            "where userId = #{userId} and distributorId = #{distributorId}")
+    Integer judgeRelated(Integer distributorId, Integer userId);
+
+
 }

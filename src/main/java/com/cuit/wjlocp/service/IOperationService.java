@@ -1,8 +1,6 @@
 package com.cuit.wjlocp.service;
 
-import com.cuit.wjlocp.entity.Actor;
-import com.cuit.wjlocp.entity.Org;
-import com.cuit.wjlocp.entity.User;
+import com.cuit.wjlocp.entity.*;
 import com.cuit.wjlocp.vo.UserWithName;
 import com.github.pagehelper.Page;
 
@@ -63,4 +61,6 @@ public interface IOperationService {
 
     //修改角色信息
     public int changeActorInfo(Actor actor);
+
+
 }

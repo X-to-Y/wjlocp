@@ -1,18 +1,17 @@
 package com.cuit.wjlocp.controller;
 
+import com.cuit.wjlocp.entity.BasicInfo;
+import com.cuit.wjlocp.entity.DistributorType;
 import com.cuit.wjlocp.entity.User;
 import com.cuit.wjlocp.service.impl.IDtAcctServiceImpl;
-import com.cuit.wjlocp.utils.BaseUtils;
 import com.cuit.wjlocp.utils.Msg;
-import com.cuit.wjlocp.vo.UserWithName;
+import com.cuit.wjlocp.vo.Basic;
 import com.github.pagehelper.Page;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.text.SimpleDateFormat;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -52,8 +51,8 @@ public class DtAcctController {
             return Msg.success()
                     .add("msg",  "查询成功！")
                     .add("data",usersList)
-                    .add("page",pageParam)
-                    .add("totalPage",(usersList.getTotal()/(Integer.parseInt(limitParam)))+1);
+                    .add("page",Integer.parseInt(pageParam))
+                    .add("totalPage",((usersList.getTotal() - 1)/(Integer.parseInt(limitParam)))+1);
         }
     }
 
@@ -85,8 +84,8 @@ public class DtAcctController {
             return Msg.success()
                     .add("msg",  "查询成功！")
                     .add("data",usersList)
-                    .add("page",pageParam)
-                    .add("totalPage",(usersList.getTotal()/(Integer.parseInt(limitParam)))+1);
+                    .add("page",Integer.parseInt(pageParam))
+                    .add("totalPage",((usersList.getTotal() - 1)/(Integer.parseInt(limitParam)))+1);
         }
     }
 
@@ -216,5 +215,115 @@ public class DtAcctController {
         }
     }
 
+    /***
+     * 经销商类别下拉列表接口
+     * @return
+     */
+    @GetMapping("allDt")
+    public Msg selectDt(){
+        List<DistributorType> DTList = iDtAcctServiceImpl.selectAllDT();
+        if (DTList!=null){
+            return Msg.success().add("msg","查询成功！")
+                    .add("data",DTList);
+        }else{
+            return Msg.fail().add("msg","未查到任何信息！");
+        }
+    }
 
+    /***
+     * 多条件分页查询
+     * @param basicInfo
+     * @param request
+     * @return
+     */
+    @PostMapping("findDtList")
+    public Msg findDtList(@RequestBody BasicInfo basicInfo,
+                      HttpServletRequest request){
+        String pageParam = request.getHeader("pageParam");
+        String limitParam = request.getHeader("limitParam");
+//        System.out.println(basicInfo);
+        if ( pageParam.equals("1") && limitParam.equals("99999")){
+            List<Basic> basicInfoList = iDtAcctServiceImpl.findDtList(basicInfo);
+            return Msg.success()
+                    .add("msg","查询成功")
+                    .add("data",basicInfoList);
+        }
+        else{
+            //当前页数
+            int page = !pageParam.equals("") ? Integer.parseInt(pageParam) : 1;
+            //每页条数
+            int limit = !limitParam.equals("") ? Integer.parseInt(limitParam) : 10;
+            //分页
+            PageHelper.startPage(page, limit);
+            Page<Basic> basicInfoList = iDtAcctServiceImpl.findDtList(basicInfo);
+            return Msg.success()
+                    .add("msg",  "查询成功！")
+                    .add("data",basicInfoList)
+                    .add("page",Integer.parseInt(pageParam))
+                    .add("totalPage",((basicInfoList.getTotal() - 1)/(Integer.parseInt(limitParam)))+1);
+        }
+    }
+
+    /***
+     * 关联经销商和经销商账号
+     * @param basicId
+     * @param userId
+     * @return
+     */
+    @GetMapping("relate")
+    public Msg relate(@RequestParam String basicId,
+                      @RequestParam String userId) {
+        if (basicId != null && userId != null){
+            int flag = iDtAcctServiceImpl.relate(Integer.parseInt(basicId),Integer.parseInt(userId));
+            if(flag == -1){
+                return Msg.fail().add("msg","已经关联!");
+
+            }else{
+                return Msg.success().add("msg","关联成功！");
+            }
+        }else{
+            return Msg.fail().add("msg","参数有误！");
+        }
+    }
+
+    /***
+     * 取消关联 经销商账号和经销商
+     * @param basicId
+     * @param userId
+     * @return
+     */
+    @GetMapping("remove")
+    public Msg remove(@RequestParam String basicId,
+                      @RequestParam String userId){
+        if (basicId != null && userId != null){
+            int flag = iDtAcctServiceImpl.remove(Integer.parseInt(basicId),Integer.parseInt(userId));
+            if(flag == 1){
+                return Msg.success().add("msg","解除关联成功！");
+            }else{
+                return Msg.fail().add("msg","解除关联失败!");
+            }
+        }else{
+            return Msg.fail().add("msg","参数有误！");
+        }
+    }
+
+    /***
+     * 查询已关联的经销商
+     * @param userId
+     * @return
+     */
+    @GetMapping("relatedList")
+    public Msg relatedList(@RequestParam Integer userId){
+        if (userId != 0){
+            List<Basic> basicList = iDtAcctServiceImpl.relatedList(userId);
+            if (basicList != null && basicList.size() > 0){
+                return Msg.success().add("msg", "查询成功！")
+                                    .add("data", basicList);
+            }else{
+                return Msg.fail().add("msg", "未查询到任何信息！");
+            }
+        }else{
+            return Msg.fail().add("msg","参数错误！");
+        }
+    }
 }

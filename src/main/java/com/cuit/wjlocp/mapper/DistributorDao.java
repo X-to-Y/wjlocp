@@ -8,7 +8,6 @@ import com.cuit.wjlocp.vo.DistributorQuery;
 import com.cuit.wjlocp.vo.VUser;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.*;
-import org.springframework.stereotype.Repository;
 import java.util.List;
 
 /**

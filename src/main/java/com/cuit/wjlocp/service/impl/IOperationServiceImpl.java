@@ -1,8 +1,6 @@
 package com.cuit.wjlocp.service.impl;
 
-import com.cuit.wjlocp.entity.Actor;
-import com.cuit.wjlocp.entity.Org;
-import com.cuit.wjlocp.entity.User;
+import com.cuit.wjlocp.entity.*;
 import com.cuit.wjlocp.mapper.IOperationDao;
 import com.cuit.wjlocp.service.IOperationService;
 import com.cuit.wjlocp.vo.UserWithName;
@@ -101,4 +99,6 @@ public class IOperationServiceImpl implements IOperationService {
     public int changeActorInfo(Actor actor) {
         return iOperationDao.changeActorInfo(actor);
     }
+
+
 }

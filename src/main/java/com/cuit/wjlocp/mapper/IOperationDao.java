@@ -1,8 +1,6 @@
 package com.cuit.wjlocp.mapper;
 
-import com.cuit.wjlocp.entity.Actor;
-import com.cuit.wjlocp.entity.Org;
-import com.cuit.wjlocp.entity.User;
+import com.cuit.wjlocp.entity.*;
 import com.cuit.wjlocp.vo.UserWithName;
 import com.github.pagehelper.Page;
 import org.apache.ibatis.annotations.*;
@@ -146,4 +144,5 @@ public interface IOperationDao {
             "set actorName = #{actorName}, memo = #{memo}\n" +
             "where id = #{id}")
     int changeActorInfo(Actor actor);
+
 }
