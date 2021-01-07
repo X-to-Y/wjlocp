@@ -100,8 +100,9 @@ public class DistributorServiceImpl implements DistributorService {
 
     @Override
     @Transactional
-    public boolean removeDistributor(String id) {
+    public boolean removeDistributor(Integer id) {
         if(id != null && !"".equals(id)){
+            distributorDao.deleteToptoSub(id);
             return distributorDao.deleteByID(id) > 0;
         }
         return false;

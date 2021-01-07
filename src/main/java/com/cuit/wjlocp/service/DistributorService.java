@@ -32,7 +32,7 @@ public interface DistributorService {
     public boolean addSubUserInfo(String token, User user);
 
     //删除经销商
-    public boolean removeDistributor(String id);
+    public boolean removeDistributor(Integer id);
 
     //启用经销商
     public boolean enableDistributor(Integer id);

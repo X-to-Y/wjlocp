@@ -77,11 +77,11 @@ public interface DistributorDao {
 
     //删除经销商
     @Delete("delete from p_user where p_user.id = #{id};")
-    public int deleteByID(String id);
+    public int deleteByID(Integer id);
 
     //删除父子关系
     @Delete("delete from d_topusertosubuser where d_topusertosubuser.subId = #{id}\n" +
-            " and d_topusertosubuser.topId = #{id}" )
+            " or d_topusertosubuser.topId = #{id}" )
     public int deleteToptoSub(Integer id);
 
     //启用经销商

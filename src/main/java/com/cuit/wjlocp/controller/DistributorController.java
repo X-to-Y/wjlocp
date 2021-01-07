@@ -114,7 +114,7 @@ public class DistributorController {
 
     //删除子经销商
     @GetMapping("/delete/sub")
-    public Msg removeSubDistributor(@RequestParam String subId){
+    public Msg removeSubDistributor(@RequestParam Integer subId){
         if(distributorService.removeDistributor(subId)){
             return Msg.success()
                     .add("msg", "删除子经销商成功");
