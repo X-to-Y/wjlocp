@@ -164,7 +164,7 @@ public class DtAcctController {
                         HttpServletRequest request){
         String token = request.getHeader("token");
         if(user != null && !token.equals("")){
-            int flag = iDtAcctServiceImpl.addDt(user,token);
+            int flag = iDtAcctServiceImpl.modifyDt(user,token);
             if (1 == flag){
                 return Msg.success().add("msg","修改信息成功！");
             }else{

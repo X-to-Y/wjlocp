@@ -97,7 +97,7 @@ public class LoginController {
                     return Msg.success()
                             .add("msg", "修改密码成功");
                 } else {
-                    return Msg.success()
+                    return Msg.fail()
                             .add("msg", "修改密码失败");
                 }
             }
