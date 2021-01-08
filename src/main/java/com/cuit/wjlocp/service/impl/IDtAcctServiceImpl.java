@@ -71,6 +71,7 @@ public class IDtAcctServiceImpl implements IDtAcctService {
         user.setModifyPerson(name);
         Date date = new Date();
         user.setModifyTime(date);
+        System.out.println(user);
         return iDtAcctDao.modifyDt(user);
     }
 

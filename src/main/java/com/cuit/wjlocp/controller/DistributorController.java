@@ -93,7 +93,6 @@ public class DistributorController {
         String token = request.getHeader("token");
         String pageParam = request.getHeader("pageParam");
         String limitParam = request.getHeader("limitParam");
-
         if ( pageParam.equals("1") && limitParam.equals("99999")){
             List<VUser> userList = distributorService.getUserInfoByLike(token, query);
             return Msg.success()

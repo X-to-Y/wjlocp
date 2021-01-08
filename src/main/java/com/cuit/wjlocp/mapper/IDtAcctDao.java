@@ -32,12 +32,12 @@ public interface IDtAcctDao {
             "select *" +
             "from p_user" +
             "<where>" +
-            "and actorType = 2 or actorType = 3 " +
+            "and (actorType = 2 or actorType = 3) " +
             "<if test=\"dtName != \'\'\">" +
-            "and actorName like CONCAT('%',#{dtName},'%')" +
+            "and dtName like CONCAT('%',#{dtName},'%')" +
             "</if>" +
             "<if test=\"userName != \'\'\">" +
-            "and actorName like CONCAT('%',#{userName},'%')" +
+            "and userName like CONCAT('%',#{userName},'%')" +
             "</if>" +
             "<if test='isFreeze != -1'>" +
             "and isFreeze like CONCAT('%',#{isFreeze},'%')" +
@@ -65,9 +65,9 @@ public interface IDtAcctDao {
 
     //修改经销商账号
     @Update("update p_user \n" +
-            "set userName=#{userName},dtName=#{dtName},name={name},tel=#{name},mail=#{mail},memo=#{memp}," +
-            "   createPerson=#{createPerson},modifyPerson=#{modifyPerson},createTime=#{createTime},modifyTime=#{modifyTime}\n" +
-            "where id = #{user.id}")
+            "set userName=#{userName},dtName=#{dtName},name=#{name},tel=#{tel},mail=#{mail},memo=#{memo}," +
+            "   modifyPerson=#{modifyPerson},modifyTime=#{modifyTime}\n" +
+            "where id = #{id}")
     int modifyDt(User user);
 
     //删除经销商账号
