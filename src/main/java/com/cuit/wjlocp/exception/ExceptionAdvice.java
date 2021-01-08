@@ -17,14 +17,14 @@ import org.springframework.web.servlet.NoHandlerFoundException;
  * @Date: 2019/1/13 0013 1:18
  * @Description: 异常拦截
  */
-//@RestControllerAdvice
-//public class ExceptionAdvice {
-//
-//    @ResponseBody
-//    @ExceptionHandler({Exception.class, NullPointerException.class})
-//    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
-//    public Msg ServerError(){
-//        return Msg.fail().add("msg", "系统出错，请联系管理员");
-//    }
-//
-//}
+@RestControllerAdvice
+public class ExceptionAdvice {
+
+    @ResponseBody
+    @ExceptionHandler({Exception.class, NullPointerException.class})
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
+    public Msg ServerError(){
+        return Msg.fail().add("msg", "系统出错，请联系管理员");
+    }
+
+}
